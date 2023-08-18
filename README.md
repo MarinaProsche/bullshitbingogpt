@@ -13,5 +13,6 @@ flask --app app run
 Docker:
 ```
 docker build -t bullshitbingogpt .
-docker run -it bullshitbingogpt:latest
+docker run -p80:80 -it bullshitbingogpt:latest
+docker tag bullshitbingogpt:latest us-central1-docker.pkg.dev/bullshitbingogpt/bullshitbingogpt/bullshitbingogpt
 ```

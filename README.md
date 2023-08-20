@@ -15,4 +15,5 @@ Docker:
 docker build -t bullshitbingogpt .
 docker run -p80:80 -it bullshitbingogpt:latest
 docker tag bullshitbingogpt:latest us-central1-docker.pkg.dev/bullshitbingogpt/bullshitbingogpt/bullshitbingogpt
+docker push us-central1-docker.pkg.dev/bullshitbingogpt/bullshitbingogpt/bullshitbingogpt:latest
 ```

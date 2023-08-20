@@ -1,4 +1,12 @@
 from flask import Flask, render_template, request
+import openai
+
+def openai_key():
+    with open('.openaikey', 'r') as string:
+        key = string.read().strip()
+        return key
+
+openai.api_key = openai_key()
 
 app = Flask(__name__, template_folder= 'templates')
 
@@ -10,6 +18,7 @@ def text():
     if request.method == "POST":
         text = 'дождитесь генерации'
         return render_template('after_text.html', text=text)
+    
 
 # @app.route('/text/', methods=['post', 'get'])
 # def false():

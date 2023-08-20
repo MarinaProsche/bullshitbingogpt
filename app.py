@@ -13,18 +13,25 @@ app = Flask(__name__, template_folder= 'templates')
 @app.route("/", methods=['post', 'get'])
 def text():
     if request.method == "GET":
-        text = request.form.get('text')
-        return render_template('text.html', text=text)
+        return render_template('index.html')
     if request.method == "POST":
-        text = 'дождитесь генерации'
-        return render_template('after_text.html', text=text)
-    
+        text = request.form.get('text')
+        prompt = "extract a main theme from text, using not more than 100 words and only generic terms: " + text
+        message = chat_with_chatgpt(prompt=prompt)
+        return render_template('bingo.html', text=message)
 
-# @app.route('/text/', methods=['post', 'get'])
-# def false():
-#     message = ''
-#     if request.method == 'POST':
-#         text = request.form.get('text')
-#     if text:
-#         message = 'Please wait'
-#     return render_template('text.html', message=message)
+def chat_with_chatgpt(prompt, model="gpt-3.5-turbo"):
+    response = openai.ChatCompletion.create(
+        # engine=model,
+        model=model,
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        # max_tokens=100,
+        # n=1,
+        # stop=None,
+        # temperature=0.5,
+    )
+
+    message = response.choices[0].message.content.strip()
+    return message

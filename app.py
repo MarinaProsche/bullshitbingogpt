@@ -16,19 +16,19 @@ def text():
         return render_template('index.html')
     if request.method == "POST":
         text = request.form.get('text')
-        prompt = ("find a purpose of this text: \n\n\n"
+        prompt = ("find a purpose and genre and summary in 30 words of this text: \n\n\n"
         + text + "\n\n\n give the answer in the language of the text (example: Russian should result in Russian)")
         message_100 = chat_with_chatgpt(prompt=prompt)
-        prompt = ("create a short theme from previous theme, using not more than 20 words, exclude all specific terms: \n\n\n"
-        + message_100 + "\n\n\n give the answer in the language of the theme (example: Russian should result in Russian)")
-        # theme ready for making a buzzwords:
-        message_20 = chat_with_chatgpt(prompt=prompt)
+        # prompt = ("create a short theme from previous theme, using not more than 20 words, exclude all specific terms: \n\n\n"
+        # + message_100 + "\n\n\n give the answer in the language of the theme (example: Russian should result in Russian)")
+        # # theme ready for making a buzzwords:
+        # message_20 = chat_with_chatgpt(prompt=prompt)
 
-        prompt = ("write down funny buzzwords, that could be used for bullshit bingo for this theme: \n\n\n"
-        + message_20 + "\n\n\n give the answer in the language of the theme (example: Russian should result in Russian)")
+        prompt = ("write down stereotypic for this genre short buzzwords, that could be used for bullshit bingo for this genre: \n\n\n"
+        + message_100 + "\n\n\n give the answer in the language of the theme (example: Russian should result in Russian)")
         buzzwords = chat_with_chatgpt(prompt=prompt)
 
-        return render_template('bingo.html', text=buzzwords, message_100=message_100, message_20 = message_20)
+        return render_template('bingo.html', text=buzzwords, message_100=message_100)
 
 def chat_with_chatgpt(prompt, model="gpt-3.5-turbo"):
     response = openai.ChatCompletion.create(

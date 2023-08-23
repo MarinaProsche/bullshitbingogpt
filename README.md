@@ -7,6 +7,7 @@ It uses OpenAI for text processing and don't store your data.
 
 Start app:
 ```
+pip install -r requirements.txt
 flask --app app run
 ```
 

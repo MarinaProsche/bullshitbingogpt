@@ -1,4 +1,5 @@
-from chatgpt import generate_buzzwords
+from chatgpt import generate_buzzwords, find_theme_for_sent_text, match_buzzwords
+from generator_for_themes import get_theme_list, get_buzzwords_for_theme
 
 
 def example_texts():
@@ -9,9 +10,21 @@ def example_texts():
 
 def main():
     texts = example_texts()
-    for n in texts:
-        text_info = generate_buzzwords(n)
-        print("BUZZWORDS:\n\n" + text_info[0] + "\n\n" + "SYNOPSYS: \n\n" + text_info[1] + "\n---------------------\n\n")
+    themes = get_theme_list()
+    for text in texts:
+        theme_of_sent_text = find_theme_for_sent_text(text=text, themes=themes)
+        if theme_of_sent_text in themes:
+            list_final_buzzwords = get_buzzwords_for_theme(theme_of_sent_text)
+            buzzword_match = match_buzzwords(text=text, buzzwords=str(list_final_buzzwords))
+            for buzzword in list_final_buzzwords:
+                if buzzword in buzzword_match:
+                    print (f"X {buzzword}")
+                else:
+                    print (f"  {buzzword}") 
+            print("THEMES:\n\n" + theme_of_sent_text + "\n\n" + "\n---------------------\n\n")
+        else:
+            print(f"sorry, this text with theme {theme_of_sent_text} doesn't match any theme from list")
+
 
 if __name__ == "__main__":
     main()

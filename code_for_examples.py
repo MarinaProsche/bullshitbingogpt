@@ -18,12 +18,12 @@ def main():
             buzzword_match = match_buzzwords(text=text, buzzwords=str(list_final_buzzwords))
             for buzzword in list_final_buzzwords:
                 if buzzword in buzzword_match:
-                    print (f"X {buzzword}")
+                    print (f"X {buzzword}")    
                 else:
                     print (f"  {buzzword}") 
-            print("THEMES:\n\n" + theme_of_sent_text + "\n\n" + "\n---------------------\n\n")
+            print("THEMES:\n\n" + theme_of_sent_text + "\n\n" + buzzword_match + "\n---------------------\n\n")
         else:
-            print(f"sorry, this text with theme {theme_of_sent_text} doesn't match any theme from list")
+            print(f"sorry, this text with theme {theme_of_sent_text} doesn't match any theme from list \n---------------------\n\n")
 
 
 if __name__ == "__main__":

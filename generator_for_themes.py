@@ -14,9 +14,9 @@ def parsing_only_buzzwords(text):
     res =[]
     lines = text.split('\n')
     for line in lines:
-        m = re.search(r'^\d+\. "?(.+?)"?$', line)
+        m = re.search(r'^\d+\. (.+)$', line)
         if m:
-            res.append(m.group(1))
+            res.append(m.group(1).replace('"', '').strip())
     return res
 
 def theme_to_file(theme):

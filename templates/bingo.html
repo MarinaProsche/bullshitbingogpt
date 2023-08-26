@@ -5,12 +5,18 @@
 
 <body>
 
-    <p>{{ message_30}}</p>
+    <p>You theme: {{ theme_of_sent_text }}</p>
     <br/>
     <br/>
     <br/>
-    <p>{{ buzzwords }}</p>
-
+    <table>
+        {% for i in range(5) %}
+        <tr>
+        {% for j in range(5) %}
+        <td {% if buzz_m_list[i*5+j].match %} style="background-color:#00FF00" {%endif%} >{{buzz_m_list[i*5+j].buzzword}}</td>
+        {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
 </body>
-
 </html>

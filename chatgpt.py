@@ -39,7 +39,7 @@ def match_buzzwords(text, buzzwords):
 
 
 
-def chat_with_chatgpt(prompt, model="gpt-3.5-turbo"):
+def chat_with_chatgpt(prompt, model="gpt-3.5-turbo-16k"):
     response = openai.ChatCompletion.create(
         # engine=model,
         model=model,

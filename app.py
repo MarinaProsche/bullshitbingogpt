@@ -21,7 +21,6 @@ def text():
         text = request.form.get('input_text')
         themes = get_theme_list()
         theme_of_sent_text = find_theme_for_sent_text(text=text, themes=themes)
-        print(theme_of_sent_text, themes)
         if theme_of_sent_text in themes:
             list_final_buzzwords = get_buzzwords_for_theme(theme_of_sent_text)
             buzzword_match = match_buzzwords(text=text, buzzwords=str(list_final_buzzwords))

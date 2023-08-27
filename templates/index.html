@@ -9,13 +9,22 @@
 
     <form action="" method="post">
         <p>
-            <label for="input_text">Insert your text</label>
-            <textarea name="input_text" cols="120" rows="20"></textarea>
+            <label for="input_text">Insert your text (up to 60,000 symbols)</label>
+            <br/>
+            <textarea id="textarea" name="input_text" cols="120" rows="20"></textarea>
+        <div id="count">0/60000</div>
         </p>
         <p>
-            <input type="submit">
+            <input id="submit" value="send your text" type="submit"></input>
         </p>
     </form>
+    <script>
+        document.getElementById('textarea').onkeyup = function () {
+            document.getElementById('count').innerHTML = this.value.length + "/60000";
+            if (this.value.length > 60000) {document.getElementById("submit").disabled = true;}
+            else {document.getElementById("submit").disabled = false;}
+        };
+    </script>
 
 </body>
 

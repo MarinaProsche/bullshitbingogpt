@@ -30,6 +30,9 @@ def find_theme_for_sent_text(themes, text):
     themes_str = '\n'.join(themes)
     prompt = f"this is the list of themes:\n\n{themes_str}\n\n\nfind the one, that describes the following text the best and print only the theme:\n\n{text}"
     theme_of_text = chat_with_chatgpt(prompt=prompt)
+    for theme in themes:
+        if theme.lower() in theme_of_text.lower():
+            return theme
     return theme_of_text
 
 def match_buzzwords(text, buzzwords):

@@ -1,14 +1,18 @@
 from concurrent.futures import ThreadPoolExecutor
-from chatgpt import generate_buzzwords, generate_buzzwords_for_theme
+from chatgpt import generate_buzzwords_for_theme
 import re
 import json
 import os
 
 
-def example_theme():
-    with open('themes.txt', 'r') as f:
-        themes = [x.strip() for x in f.readlines() if x.strip()]
-        return themes
+def get_themes_for_generation():
+    under_themes = []
+    with open('themes.json', 'r') as f:
+        themes = json.load(f)
+        for theme in themes:
+            under_theme = themes[theme]
+            under_themes.extend(under_theme)
+        return under_themes
 
 def parsing_only_buzzwords(text):
     res =[]
@@ -25,9 +29,9 @@ def theme_to_file(theme):
     with open (f'buzzwords/{theme}', "w") as f:
         json.dump(buzzwords_list, f, indent=4) #make 4 spaces
 
-def get_theme_list():
-    theme_list = os.listdir('buzzwords')
-    return theme_list
+def get_theme_architecture():
+    with open('themes.json', 'r') as f:
+        return json.load(f)
 
 def get_buzzwords_for_theme(theme):
     with open (f'buzzwords/{theme}', "r") as f:
@@ -35,7 +39,7 @@ def get_buzzwords_for_theme(theme):
 
 def main():
     futures = []
-    themes = example_theme()
+    themes = get_themes_for_generation()
     with ThreadPoolExecutor(max_workers=128) as executor:
         for theme in themes:
             future = executor.submit(theme_to_file, theme)

@@ -1,4 +1,4 @@
-from generator_for_themes import parsing_only_buzzwords
+from generator_for_themes import parsing_only_buzzwords, get_themes_for_generation
 
 def test_simple():
     
@@ -33,5 +33,11 @@ Hello bey
 '''
     only_buzzwords = parsing_only_buzzwords(text)
     assert len(only_buzzwords) == 25
-    assert only_buzzwords[12] == '"Crimson Desperation: A Woman\'s Fight for Survival"'
-    assert only_buzzwords[6] == '"Unforgiving Shadows: A Woman\'s Escape from a Dark Past"'
+    assert only_buzzwords[12] == 'Crimson Desperation: A Woman\'s Fight for Survival'
+    assert only_buzzwords[6] == 'Unforgiving Shadows: A Woman\'s Escape from a Dark Past'
+
+
+def test_get_themes_for_generation():
+    themes = get_themes_for_generation()
+    assert len(themes) > 100
+    assert themes[0] == "Epic Fantasy"

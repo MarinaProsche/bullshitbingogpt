@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import openai
-from chatgpt import generate_buzzwords, find_theme_for_sent_text, match_buzzwords
-from generator_for_themes import get_theme_list, get_buzzwords_for_theme
+from chatgpt import find_theme_for_sent_text, find_general_theme_for_sent_text, match_buzzwords
+from generator_for_themes import get_theme_architecture, get_buzzwords_for_theme
 
 from dataclasses import dataclass
 
@@ -19,14 +19,18 @@ def text():
         return render_template('index.html')
     if request.method == "POST":
         text = request.form.get('input_text')
-        themes = get_theme_list()
-        theme_of_sent_text = find_theme_for_sent_text(text=text, themes=themes)
-        if theme_of_sent_text in themes:
-            list_final_buzzwords = get_buzzwords_for_theme(theme_of_sent_text)
-            buzzword_match = match_buzzwords(text=text, buzzwords=list_final_buzzwords)
-            buzz_m_list = [BuzzwordsMatch(buzzword=buzzword, match=buzzword.lower() in buzzword_match.lower()) for buzzword in list_final_buzzwords]
-            buzz_m_list = buzz_m_list[:12] + [BuzzwordsMatch(buzzword='', match=True)] + buzz_m_list[12:]   
-            return render_template('bingo.html', buzz_m_list=buzz_m_list, theme_of_sent_text=theme_of_sent_text, buzzword_match=buzzword_match)
+        themes = get_theme_architecture()
+        general_theme = find_general_theme_for_sent_text(themes=list(themes), text=text)
+        if general_theme in themes:
+            list_of_under_themes = themes[general_theme]
+            theme_of_sent_text = find_theme_for_sent_text(text=text, under_themes=list_of_under_themes)
+            if theme_of_sent_text in themes[general_theme]:
+                list_final_buzzwords = get_buzzwords_for_theme(theme_of_sent_text)
+                buzzword_match = match_buzzwords(text=text, buzzwords=list_final_buzzwords)
+                buzz_m_list = [BuzzwordsMatch(buzzword=buzzword, match=buzzword.lower() in buzzword_match.lower()) for buzzword in list_final_buzzwords]
+                buzz_m_list = buzz_m_list[:12] + [BuzzwordsMatch(buzzword='', match=True)] + buzz_m_list[12:]   
+                return render_template('bingo.html', buzz_m_list=buzz_m_list, theme_of_sent_text=theme_of_sent_text, buzzword_match=buzzword_match)
+            else:
+                return render_template('theme_not_found.html', theme_of_sent_text=theme_of_sent_text)
         else:
-            return render_template('theme_not_found.html', theme_of_sent_text=theme_of_sent_text)
-
+            return render_template('theme_not_found.html', theme_of_sent_text=general_theme)

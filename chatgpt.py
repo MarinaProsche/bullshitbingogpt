@@ -11,26 +11,27 @@ def openai_key():
 openai.api_key = openai_key()
                 
 
-def generate_buzzwords(text):
-    prompt = ("find a purpose and genre and synopsys in 30 words of this text: \n\n\n"
-        + text + TEXT_ABOUT_LANGUAGE)
-    message_30 = chat_with_chatgpt(prompt=prompt)
-    prompt = ("create short stereotypic buzzwords, that could be used for bullshit bingo for this theme: \n\n\n"
-    + message_30 + TEXT_ABOUT_LANGUAGE)
-    buzzwords = chat_with_chatgpt(prompt=prompt)
-    return (buzzwords, message_30)
-
 def generate_buzzwords_for_theme(theme):
     prompt = ("create 24 buzzwords that could be used for bullshit bingo for this theme: \n\n\n"
     + theme)
     buzzwords = chat_with_chatgpt(prompt=prompt)
     return buzzwords
 
-def find_theme_for_sent_text(themes, text):
+def find_general_theme_for_sent_text(themes, text):
     themes_str = '\n'.join(themes)
-    prompt = f"this is the list of themes:\n\n{themes_str}\n\n\nfind the one, that describes the following text the best and print only the theme:\n\n{text}"
-    theme_of_text = chat_with_chatgpt(prompt=prompt)
+    prompt = f"this is the text \n\n{text}.\n\nWhat kind of theme is it? \n\n{themes_str}"
+    print(prompt)
+    general_theme = chat_with_chatgpt(prompt=prompt)
     for theme in themes:
+        if theme.lower() in general_theme.lower():
+            return theme
+    return general_theme
+
+def find_theme_for_sent_text(under_themes, text):
+    under_themes_str = '\n'.join(under_themes)
+    prompt = f"this is the list of themes:\n\n{under_themes_str}\n\n\nfind the one, that describes the following text the best and print only the theme:\n\n{text}"
+    theme_of_text = chat_with_chatgpt(prompt=prompt)
+    for theme in under_themes:
         if theme.lower() in theme_of_text.lower():
             return theme
     return theme_of_text

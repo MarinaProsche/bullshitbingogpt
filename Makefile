@@ -3,4 +3,5 @@ example:
 gen:
 	rm -rf buzzwords && mkdir buzzwords && python generator_for_themes.py
 flask:
-	flask --app app run	
+	flask --app app run
+	

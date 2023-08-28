@@ -23,10 +23,10 @@ def text():
         theme_of_sent_text = find_theme_for_sent_text(text=text, themes=themes)
         if theme_of_sent_text in themes:
             list_final_buzzwords = get_buzzwords_for_theme(theme_of_sent_text)
-            buzzword_match = match_buzzwords(text=text, buzzwords=str(list_final_buzzwords))
-            buzz_m_list = [BuzzwordsMatch(buzzword=buzzword, match=buzzword in buzzword_match) for buzzword in list_final_buzzwords]
+            buzzword_match = match_buzzwords(text=text, buzzwords=list_final_buzzwords)
+            buzz_m_list = [BuzzwordsMatch(buzzword=buzzword, match=buzzword.lower() in buzzword_match.lower()) for buzzword in list_final_buzzwords]
             buzz_m_list = buzz_m_list[:12] + [BuzzwordsMatch(buzzword='', match=True)] + buzz_m_list[12:]   
-            return render_template('bingo.html', buzz_m_list=buzz_m_list, theme_of_sent_text=theme_of_sent_text)
+            return render_template('bingo.html', buzz_m_list=buzz_m_list, theme_of_sent_text=theme_of_sent_text, buzzword_match=buzzword_match)
         else:
             return render_template('theme_not_found.html', theme_of_sent_text=theme_of_sent_text)
 

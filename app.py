@@ -31,6 +31,6 @@ def text():
                 buzz_m_list = buzz_m_list[:12] + [BuzzwordsMatch(buzzword='', match=True)] + buzz_m_list[12:]   
                 return render_template('bingo.html', buzz_m_list=buzz_m_list, theme_of_sent_text=theme_of_sent_text, buzzword_match=buzzword_match)
             else:
-                return render_template('theme_not_found.html', theme_of_sent_text=theme_of_sent_text)
+                return render_template('index.html', chat_response=theme_of_sent_text)
         else:
-            return render_template('theme_not_found.html', theme_of_sent_text=general_theme)
+            return render_template('index.html', chat_response=general_theme)

@@ -1,31 +1,38 @@
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8" />
-    <title>bullshitbingogpt</title>
-</head>
+{% block content %}
+<div class="text-wrap fs-4" style="width: 77rem;">
+    {% if chat_response %}
+    <p> 😭 ChatGPT response was: "{{ chat_response }}", which is not one of the supported themes. 😭 Please, try again:</p>
+    {% else %}
+    <p>🚀🚀 Welcome to Bullshit Bingo GPT! 🚀🚀</p>
+    The go-to platform for transforming your text into an interactive game of clichés, jargon, and buzzwords.
+    Simply input your text 📖 and let our sophisticated algorithm sift through it, identifying the most notorious and
+    overused phrases.
+    🎰 In moments, you'll have a unique bingo card ready for some fun! 🎰
+    Whether you're sitting through a corporate presentation, reading a marketing pitch, or simply want to find out how
+    much jargon fills your own writings, Bullshit Bingo GPT has got you covered.
+    Discover the buzz in your text and let the games begin! 🏁
+    {% endif %}
+    <p></p>
+</div>
 
-<body>
-
-    <form action="" method="post">
-        <p>
-            <label for="input_text">Insert your text (up to 60,000 symbols)</label>
-            <br/>
-            <textarea id="textarea" name="input_text" cols="120" rows="20"></textarea>
-        <div id="count">0/60000</div>
-        </p>
-        <p>
-            <input id="submit" value="send your text" type="submit"></input>
-        </p>
-    </form>
-    <script>
-        document.getElementById('textarea').onkeyup = function () {
-            document.getElementById('count').innerHTML = this.value.length + "/60000";
-            if (this.value.length > 60000) {document.getElementById("submit").disabled = true;}
-            else {document.getElementById("submit").disabled = false;}
-        };
-    </script>
-
-</body>
-
-</html>
+<form action="" method="post">
+    <p>
+        <label for="input_text">Insert your text (up to 60,000 symbols)</label>
+        <br />
+        <textarea id="textarea" name="input_text" cols="120" rows="20"></textarea>
+    <div id="count">0/60000</div>
+    </p>
+    <p>
+        <input id="submit" value="send your text" type="submit"></input>
+    </p>
+</form>
+<script>
+    document.getElementById('textarea').onkeyup = function () {
+        document.getElementById('count').innerHTML = this.value.length + "/60000";
+        if (this.value.length > 60000) { document.getElementById("submit").disabled = true; }
+        else { document.getElementById("submit").disabled = false; }
+    };
+</script>
+{% endblock %}

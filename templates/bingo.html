@@ -1,23 +1,39 @@
-<head>
-    <meta charset="UTF-8" />
-    <title>bullshitbingogpt</title>
-</head>
-
-<body>
-
-    <p>You theme: {{ theme_of_sent_text }}</p>
-    <p>My answer: {{buzzword_match}}</p>
-    <br/>
-    <br/>
-    <br/>
-    <table>
+{% extends "base.html" %}
+{% block content %}
+<p>You theme: {{ theme_of_sent_text }}</p>
+<p>My answer: {{buzzword_match}}</p>
+<br />
+<br />
+<br />
+<style>
+    .fixed-cell {
+      max-width: 119px; /* Set the desired width for the cells */
+      max-height: 119px; /* Set the same height as width for square cells */
+      width: 119px; /* Set the desired width for the cells */
+      height: 119px; /* Set the same height as width for square cells */
+      text-align: center;
+      vertical-align: middle;
+      font-weight: bold;
+      border: 2px solid black; /* Set border to be 2px solid black */
+    }
+    .table-bordered {
+      border: 2px solid black; /* Set border for the table to be 2px solid black */
+      border-collapse: collapse; /* Collapse borders to avoid double borders */
+    }
+  </style>
+<div class="container w-50">
+<table class="table table-bordered">
+    <tbody>
         {% for i in range(5) %}
         <tr>
-        {% for j in range(5) %}
-        <td {% if buzz_m_list[i*5+j].match %} style="background-color:#00FF00" {%endif%} >{{buzz_m_list[i*5+j].buzzword}}</td>
-        {% endfor %}
+            {% for j in range(5) %}
+            <td class="fixed-cell" {% if buzz_m_list[i*5+j].match %} style="background-color:#00FF00" {% else %} {% endif %}>
+                {{buzz_m_list[i*5+j].buzzword}}
+            </td>
+            {% endfor %}
         </tr>
         {% endfor %}
-      </table>
-</body>
-</html>
+    </tbody>
+</table>
+</div>
+{% endblock %}

@@ -54,7 +54,7 @@ def text():
                 )
                 result_message = get_result_message(
                     theme=theme_of_sent_text,
-                    score=len([x for x in buzz_m_list if x.match]),
+                    score=len([x for x in buzz_m_list if x.match])-1,
                 )
                 return render_template(
                     "bingo.html", buzz_m_list=buzz_m_list, result_message=result_message

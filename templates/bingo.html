@@ -1,39 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
-<p>You theme: {{ theme_of_sent_text }}</p>
-<p>My answer: {{buzzword_match}}</p>
-<br />
-<br />
-<br />
+<div class="text-wrap fs-4" style="width: 77rem;">
+  <p id="moving_text">{{result_message}}</p>
+  <p></p>
+</div>
 <style>
-    .fixed-cell {
-      max-width: 119px; /* Set the desired width for the cells */
-      max-height: 119px; /* Set the same height as width for square cells */
-      width: 119px; /* Set the desired width for the cells */
-      height: 119px; /* Set the same height as width for square cells */
-      text-align: center;
-      vertical-align: middle;
-      font-weight: bold;
-      border: 2px solid black; /* Set border to be 2px solid black */
-    }
-    .table-bordered {
-      border: 2px solid black; /* Set border for the table to be 2px solid black */
-      border-collapse: collapse; /* Collapse borders to avoid double borders */
-    }
-  </style>
+  .fixed-cell {
+    max-width: 119px;
+    /* Set the desired width for the cells */
+    max-height: 119px;
+    /* Set the same height as width for square cells */
+    width: 119px;
+    /* Set the desired width for the cells */
+    height: 119px;
+    /* Set the same height as width for square cells */
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    border: 2px solid black;
+    /* Set border to be 2px solid black */
+  }
+
+  .table-bordered {
+    border: 2px solid black;
+    /* Set border for the table to be 2px solid black */
+    border-collapse: collapse;
+    /* Collapse borders to avoid double borders */
+  }
+</style>
 <div class="container w-50">
-<table class="table table-bordered">
+  <table class="table table-bordered">
     <tbody>
-        {% for i in range(5) %}
-        <tr>
-            {% for j in range(5) %}
-            <td class="fixed-cell" {% if buzz_m_list[i*5+j].match %} style="background-color:#00FF00" {% else %} {% endif %}>
-                {{buzz_m_list[i*5+j].buzzword}}
-            </td>
-            {% endfor %}
-        </tr>
+      {% for i in range(5) %}
+      <tr>
+        {% for j in range(5) %}
+        <td class="fixed-cell" {% if buzz_m_list[i*5+j].match %} style="background-color:#00FF00" {% else %} {% endif
+          %}>
+          {{buzz_m_list[i*5+j].buzzword}}
+        </td>
         {% endfor %}
+      </tr>
+      {% endfor %}
     </tbody>
-</table>
+  </table>
 </div>
 {% endblock %}

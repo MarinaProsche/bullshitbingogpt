@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-wrap fs-4" style="width: 77rem;">
+  <p id="moving_text">{{text_about}}</p>
+  <p></p>
+</div>
+<style>
+  .fixed-cell {
+    max-width: 119px;
+    /* Set the desired width for the cells */
+    max-height: 119px;
+    /* Set the same height as width for square cells */
+    width: 119px;
+    /* Set the desired width for the cells */
+    height: 119px;
+    /* Set the same height as width for square cells */
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    border: 2px solid black;
+    /* Set border to be 2px solid black */
+  }
+</style>
+{% endblock %}

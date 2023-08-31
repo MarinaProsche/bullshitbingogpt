@@ -10,32 +10,37 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensure the body takes up at least the viewport height */
-  margin: 0;
-}
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      /* Ensure the body takes up at least the viewport height */
+      margin: 0;
+    }
 
-#wrapper {
-  flex: 1; /* Allow the wrapper to grow and take available space */
-}
+    #wrapper {
+      flex: 1;
+      /* Allow the wrapper to grow and take available space */
+    }
 
-#footer {
-  flex-shrink: 0; /* Prevent the footer from shrinking */
-}
+    #footer {
+      flex-shrink: 0;
+      /* Prevent the footer from shrinking */
+    }
+
     .center-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start; /* Align content to the top */
-      flex: 1; /* Allow the content to grow and take available space */
+      justify-content: flex-start;
+      /* Align content to the top */
+      flex: 1;
+      /* Allow the content to grow and take available space */
     }
 
     .padded-link {
       padding-right: 100px;
       /* Adjust the padding as needed */
     }
-
   </style>
   <script>
     fn = function () {
@@ -58,6 +63,22 @@
       animateText();
     };
     document.addEventListener('DOMContentLoaded', fn, false);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const spinnerContainer = document.getElementById('spinner-container');
+      const wrapperContainer = document.getElementById('content');
+      const aboutLink = document.querySelector('.nav-link');
+
+      aboutLink.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the link from navigating
+
+        spinnerContainer.style.display = 'flex'; // Show the spinner container
+        wrapperContainer.style.display = 'none';
+
+        // Simulate loading completion after 3 seconds (adjust as needed)
+        window.location.href = aboutLink.href;
+      });
+    });
   </script>
   {% endblock %}
 </head>
@@ -77,6 +98,18 @@
   </header>
   <div id="wrapper" class="center-content d-flex flex-wrap">
     <div id="content">{% block content %}{% endblock %}</div>
+    <div class="loading-container fs-4" id="spinner-container" style="display: none">
+      <div class="loading-spinner">
+      <div>Please, be patient.
+        <br/>Chat GPT generates an answer for you 🦾🦾 </div>
+    <div>
+      <p></p>
+      <p></p>
+      <p></p>
+      <iframe src="https://gifer.com/embed/AA9M" width=480 height=270.000 frameBorder="0" allowFullScreen></iframe>
+    </div></div>
+    </div>
+
   </div>
   <div id="footer">
     {% block footer %}

@@ -1,32 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="text-wrap fs-4" style="width: 77rem;">
+<style>
+    .container-info {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<div class="text-wrap fs-5" style="width: 77rem;">
     {% if chat_response %}
-    <p> 😭 ChatGPT response was: "{{ chat_response }}", which is not one of the supported themes. 😭 Please, try again:</p>
+    <p> 😭 ChatGPT response was: "{{ chat_response }}", which is not one of the supported themes. 😭 Please, try again:
+    </p>
     {% else %}
     <p>🚀🚀 Welcome to Bullshit Bingo GPT! 🚀🚀</p>
-    The go-to platform for transforming your text into an interactive game of clichés, jargon, and buzzwords.
+    <p>The go-to platform for transforming your text into an interactive game of clichés, jargon, and buzzwords.
     Simply input your text 📖 and let our sophisticated algorithm sift through it, identifying the most notorious and
-    overused phrases.
-    🎰 In moments, you'll have a unique bingo card ready for some fun! 🎰
-    Whether you're sitting through a corporate presentation, reading a marketing pitch, or simply want to find out how
-    much jargon fills your own writings, Bullshit Bingo GPT has got you covered.
-    Discover the buzz in your text and let the games begin! 🏁
+    overused phrases. In moments, you'll have a unique bingo card ready for some fun! 🎰</p>
+    <p>Whether you're sitting through a corporate presentation, reading a marketing pitch, or simply want to find out how
+    much jargon fills your own writings, Bullshit Bingo GPT has got you covered. Discover the buzz in your text and let the games begin! 🏁</p>
     {% endif %}
     <p></p>
 </div>
 
 <form action="" method="post">
-    <p>
-        <label for="input_text">Insert your text (up to 60,000 symbols)</label>
-        <br />
+    <div>
+        <div class="container-info">
+            <label for="input_text">Insert your text (up to 60,000 symbols)</label>
+            <div id="count">0/60000</div>
+        </div>
         <textarea id="textarea" name="input_text" cols="120" rows="20"></textarea>
-    <div id="count">0/60000</div>
-    </p>
-    <p>
-        <input id="submit" value="send your text" type="submit"></input>
-    </p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <input class="btn btn-primary fs-5" id="submit" value="send your text" type="submit"></input>
+    </div>
+    <p></p>
 </form>
 <script>
     document.getElementById('textarea').onkeyup = function () {
@@ -34,5 +41,18 @@
         if (this.value.length > 60000) { document.getElementById("submit").disabled = true; }
         else { document.getElementById("submit").disabled = false; }
     };
+    document.addEventListener('DOMContentLoaded', function () {
+        const spinnerContainer = document.getElementById('spinner-container');
+        const wrapperContainer = document.getElementById('content');
+        const submit = document.getElementById('submit');
+
+
+        submit.addEventListener('click', function (event) {
+
+            spinnerContainer.style.display = 'flex'; // Show the spinner container
+            wrapperContainer.style.display = 'none';
+
+        });
+    });
 </script>
 {% endblock %}

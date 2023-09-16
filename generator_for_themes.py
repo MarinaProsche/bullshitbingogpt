@@ -33,10 +33,6 @@ def get_theme_architecture():
     with open('themes.json', 'r') as f:
         return json.load(f)
 
-def get_buzzwords_for_theme(theme):
-    with open (f'buzzwords/{theme}', "r") as f:
-        return json.load(f)
-
 def main():
     futures = []
     themes = get_themes_for_generation()

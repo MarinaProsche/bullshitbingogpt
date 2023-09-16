@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .container-info {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<div class="text-wrap fs-5" style="width: 77rem;">
+    {% if chat_response %}
+    <p> ChatGPT response was: <b>"{{ chat_response }}"</b></p>
+    
+    <p> Try another text: </p>
+
+    {% else %}
+    <h2>🚀 Textual Theme Extractor 🚀</h2>
+
+    <p>
+        If you don't know the theme of the text, you can use Theme Extractor!!!
+        Discover Deeper Insights!
+        <br />
+        Unlock the core essence of any text with our cutting-edge Textual Theme Extractor. Dive into narratives,
+        understand nuances, and leverage AI-driven insights.
+    </p>
+
+
+    <h3>🌟 Key Features 🌟</h3>
+
+    <p>
+    <ul>
+        <li>Dynamic Narratives: Understand every text's core essence.</li>
+        <li>Optimized Insights: From top-level takeaways to minute details.</li>
+        <li>AI-Powered Analysis: Holistic and actionable results every time.</li>
+    </ul>
+    </p>
+
+    <h3>🎯 Beneficiaries 🎯</h3>
+
+    <ul>
+        <li>Thought Leaders: Grasp the zeitgeist effortlessly.</li>
+        <li>Start-ups & Enterprises: Gain a competitive textual edge.</li>
+        <li>Educators & Content Creators: Enhance comprehension and strategy.</li>
+    </ul>
+
+    <h3>Customized Solutions Available!</h3>
+    <p>
+        Need tailor-made integrations? We’ve got you covered. Elevate your textual game today.
+    </p>
+
+    <h3>📞 Connect & Revolutionize Your Text Analysis! 📞</h3>
+
+    <i>Textual Theme Extractor - Where Every Word Counts.</i>
+    {% endif %}
+    <p></p>
+</div>
+
+<form action="" method="post">
+    <div>
+        <div class="container-info">
+            <label for="input_text">Insert your text (up to 60,000 symbols)</label>
+            <div id="count">0/60000</div>
+        </div>
+        <textarea id="textarea" name="input_text" cols="120" rows="20"></textarea>
+    </div>
+    <div class="d-flex justify-content-center">
+        <input class="btn btn-primary fs-5" id="submit" value="send your text" type="submit"></input>
+    </div>
+    <p></p>
+</form>
+<script>
+    document.getElementById('textarea').onkeyup = function () {
+        document.getElementById('count').innerHTML = this.value.length + "/60000";
+        if (this.value.length > 60000) { document.getElementById("submit").disabled = true; }
+        else { document.getElementById("submit").disabled = false; }
+    };
+    document.addEventListener('DOMContentLoaded', function () {
+        const spinnerContainer = document.getElementById('spinner-container');
+        const wrapperContainer = document.getElementById('content');
+        const submit = document.getElementById('submit');
+
+
+        submit.addEventListener('click', function (event) {
+
+            spinnerContainer.style.display = 'flex'; // Show the spinner container
+            wrapperContainer.style.display = 'none';
+
+        });
+    });
+</script>
+{% endblock %}

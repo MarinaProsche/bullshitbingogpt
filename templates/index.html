@@ -24,24 +24,23 @@
     {% endif %}
     <p></p>
 </div>
-
-<form action="" method="post">
+<form action="/bingo" method="post">
     <div>
         <div class="container-info">
-            <label for="input_text">Insert your text (up to 60,000 symbols)</label>
-            <div id="count">0/60000</div>
+            <label for="input_theme">Insert your theme (up to 1000 symbols)</label>
+            <div id="count">0/1000</div>
         </div>
-        <textarea id="textarea" name="input_text" cols="120" rows="20"></textarea>
+        <p><textarea id="textarea" name="input_theme" cols="120" rows="2"></textarea></p>
     </div>
     <div class="d-flex justify-content-center">
-        <input class="btn btn-primary fs-5" id="submit" value="send your text" type="submit"></input>
+        <input class="btn btn-primary fs-5" id="submit" value="send" type="submit"></input>
     </div>
     <p></p>
 </form>
 <script>
     document.getElementById('textarea').onkeyup = function () {
-        document.getElementById('count').innerHTML = this.value.length + "/60000";
-        if (this.value.length > 60000) { document.getElementById("submit").disabled = true; }
+        document.getElementById('count').innerHTML = this.value.length + "/1000";
+        if (this.value.length > 1000) { document.getElementById("submit").disabled = true; }
         else { document.getElementById("submit").disabled = false; }
     };
     document.addEventListener('DOMContentLoaded', function () {

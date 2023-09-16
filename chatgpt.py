@@ -28,9 +28,6 @@ def find_general_theme_for_sent_text(themes, text):
     )
     print(prompt)
     general_theme = chat_with_chatgpt(prompt=prompt)
-    for theme in themes:
-        if theme.lower() in general_theme.lower():
-            return theme
     return general_theme
 
 
@@ -38,9 +35,6 @@ def find_theme_for_sent_text(under_themes, text):
     under_themes_str = "\n".join(under_themes)
     prompt = f"this is the list of themes:\n\n{under_themes_str}\n\n\nfind the one, that describes the following text the best and print only the theme:\n\n{text}"
     theme_of_text = chat_with_chatgpt(prompt=prompt)
-    for theme in under_themes:
-        if theme.lower() in theme_of_text.lower():
-            return theme
     return theme_of_text
 
 

@@ -6,8 +6,9 @@ from chatgpt import (
     match_buzzwords,
     get_result_message,
     get_text_about,
+    generate_buzzwords_for_theme,
 )
-from generator_for_themes import get_theme_architecture, get_buzzwords_for_theme
+from generator_for_themes import get_theme_architecture, parsing_only_buzzwords
 
 from dataclasses import dataclass
 
@@ -22,50 +23,65 @@ class BuzzwordsMatch:
 app = Flask(__name__, template_folder="templates")
 
 
-@app.route("/", methods=["post", "get"])
-def text():
-    if request.method == "GET":
-        return render_template("index.html")
-    if request.method == "POST":
-        text = request.form.get("input_text")
-        themes = get_theme_architecture()
-        general_theme = find_general_theme_for_sent_text(themes=list(themes), text=text)
-        if general_theme in themes:
-            list_of_under_themes = themes[general_theme]
-            theme_of_sent_text = find_theme_for_sent_text(
-                text=text, under_themes=list_of_under_themes
-            )
-            if theme_of_sent_text in themes[general_theme]:
-                list_final_buzzwords = get_buzzwords_for_theme(theme_of_sent_text)
-                buzzword_match = match_buzzwords(
-                    text=text, buzzwords=list_final_buzzwords
-                )
-                buzz_m_list = [
-                    BuzzwordsMatch(
-                        buzzword=buzzword,
-                        match=buzzword.lower() in buzzword_match.lower(),
-                    )
-                    for buzzword in list_final_buzzwords
-                ]
-                buzz_m_list = (
-                    buzz_m_list[:12]
-                    + [BuzzwordsMatch(buzzword="", match=True)]
-                    + buzz_m_list[12:]
-                )
-                result_message = get_result_message(
-                    theme=theme_of_sent_text,
-                    score=len([x for x in buzz_m_list if x.match])-1,
-                )
-                return render_template(
-                    "bingo.html", buzz_m_list=buzz_m_list, result_message=result_message
-                )
-            else:
-                return render_template("index.html", chat_response=theme_of_sent_text)
-        else:
-            return render_template("index.html", chat_response=general_theme)
-
+@app.route("/", methods=["get"])
+def index():
+    return render_template("index.html")
 
 @app.route("/about", methods=["GET"])
 def text_about():
     text_about = get_text_about()
     return render_template("about.html", text_about=text_about)
+
+
+@app.route("/extract_theme", methods=["post", "get"])
+def extract_theme():
+    if request.method == "GET":
+        return render_template("extract_theme.html")
+    if request.method == "POST":
+        text = request.form.get("input_text")
+        themes = get_theme_architecture()
+        general_theme = find_general_theme_for_sent_text(themes=list(themes), text=text)
+        for theme in themes:
+            if theme.lower() in general_theme.lower():
+                list_of_under_themes = themes[theme]
+                theme_of_sent_text = find_theme_for_sent_text(
+                    text=text, under_themes=list_of_under_themes
+                )
+                return render_template(
+                    "extract_theme.html", chat_response=theme_of_sent_text
+                )
+        else:
+            return render_template("extract_theme.html", chat_response=general_theme)
+        
+
+
+@app.route("/bingo", methods=["post", "get"])
+def bingo():
+    if request.method == "GET":
+        return render_template("index.html")
+    if request.method == "POST":
+        theme = request.form.get("input_theme")
+        list_final_buzzwords = parsing_only_buzzwords(generate_buzzwords_for_theme(theme))
+        # buzzword_match = match_buzzwords(
+        #     text=text, buzzwords=list_final_buzzwords
+        # )
+        buzz_m_list = [
+            BuzzwordsMatch(
+                buzzword=buzzword,
+                match=False
+                # buzzword.lower() in buzzword_match.lower(),
+            )
+            for buzzword in list_final_buzzwords
+        ]
+        buzz_m_list = (
+            buzz_m_list[:12]
+            + [BuzzwordsMatch(buzzword="", match=False)]
+            + buzz_m_list[12:]
+        )
+        # result_message = get_result_message(
+        #     theme=theme,
+            # score=len([x for x in buzz_m_list if x.match]) - 1,
+        # )
+        return render_template(
+            "bingo.html", buzz_m_list=buzz_m_list, result_message=''
+        )

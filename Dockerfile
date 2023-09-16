@@ -7,5 +7,4 @@ COPY *.py /app/
 COPY .openaikey /app
 COPY themes.json /app
 ADD templates /app/templates
-ADD buzzwords /app/buzzwords
 CMD flask --app app run --host 0.0.0.0 --port 80

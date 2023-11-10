@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, render_template, request
 import openai
 from chatgpt import (
@@ -61,15 +63,22 @@ def bingo():
         return render_template("index.html")
     if request.method == "POST":
         theme = request.form.get("input_theme")
-        list_final_buzzwords = parsing_only_buzzwords(generate_buzzwords_for_theme(theme))
-        # buzzword_match = match_buzzwords(
-        #     text=text, buzzwords=list_final_buzzwords
-        # )
+        user_text = request.form.get("input_user_text")
+        if theme is not None:
+            list_final_buzzwords = parsing_only_buzzwords(generate_buzzwords_for_theme(theme))
+            buzzword_serial = json.dumps(list_final_buzzwords) #string of buzzwords
+            buzzword_match = ''
+        else:
+            buzzword_serial = request.form.get('buzzword_serial') # we came from 'bingo.html' if not theme
+            list_final_buzzwords = json.loads(buzzword_serial)
+            buzzword_match = match_buzzwords(
+                text=user_text, buzzwords=list_final_buzzwords
+            )
+
         buzz_m_list = [
             BuzzwordsMatch(
                 buzzword=buzzword,
-                match=False
-                # buzzword.lower() in buzzword_match.lower(),
+                match=buzzword.lower() in buzzword_match.lower(),
             )
             for buzzword in list_final_buzzwords
         ]
@@ -83,5 +92,5 @@ def bingo():
             # score=len([x for x in buzz_m_list if x.match]) - 1,
         # )
         return render_template(
-            "bingo.html", buzz_m_list=buzz_m_list, result_message=''
+            "bingo.html", buzz_m_list=buzz_m_list, buzzword_serial=buzzword_serial, result_message=''
         )

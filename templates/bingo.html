@@ -44,4 +44,20 @@
     </tbody>
   </table>
 </div>
+<p></p>
+</div>
+<form action="/bingo" method="post">
+    <div>
+        <div class="container-info">
+            <label for="input_theme"> Optional: insert your text (up to 240000 symbols), and see, if you win the bingo! </label>
+            <div id="count">0/1000</div>
+        </div>
+        <p><textarea id="textarea" name="input_user_text" cols="120" rows="20"></textarea></p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <input class="btn btn-primary fs-5" id="submit" value="check" type="submit"></input>
+    </div>
+      <input type="hidden" name="buzzword_serial" value= "{{buzzword_serial}}" ></input>
+  </form>
+
 {% endblock %}

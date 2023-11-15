@@ -59,6 +59,8 @@ def extract_theme():
 
 @app.route("/bingo", methods=["post", "get"])
 def bingo():
+    theme_for_message = ''
+    
     if request.method == "GET":
         return render_template("index.html")
     if request.method == "POST":
@@ -68,7 +70,10 @@ def bingo():
             list_final_buzzwords = parsing_only_buzzwords(generate_buzzwords_for_theme(theme))
             buzzword_serial = json.dumps(list_final_buzzwords) #string of buzzwords
             buzzword_match = ''
+            remember_theme = json.dumps(theme) #remember theme for use it in the message text
         else:
+            remember_theme = request.form.get('remember_theme')
+            theme_for_message = json.loads(remember_theme)
             buzzword_serial = request.form.get('buzzword_serial') # we came from 'bingo.html' if not theme
             list_final_buzzwords = json.loads(buzzword_serial)
             buzzword_match = match_buzzwords(
@@ -87,10 +92,15 @@ def bingo():
             + [BuzzwordsMatch(buzzword="", match=False)]
             + buzz_m_list[12:]
         )
-        # result_message = get_result_message(
-        #     theme=theme,
-            # score=len([x for x in buzz_m_list if x.match]) - 1,
-        # )
+        if buzzword_match:
+            result_message = get_result_message(
+                theme=theme_for_message,
+                score=len([x for x in buzz_m_list if x.match]) - 1,
+            ) + f'\n\nTry another one text with "{theme_for_message}"-theme?'
+        else:
+            result_message = (f'GREAT! We have the most common cliches for theme "{theme}"\n'
+            + f'Now you can insert your text (up to 240000 symbols), and see, if you win the bingo!')
+
         return render_template(
-            "bingo.html", buzz_m_list=buzz_m_list, buzzword_serial=buzzword_serial, result_message=''
+            "bingo.html", buzz_m_list=buzz_m_list, buzzword_serial=buzzword_serial, result_message=result_message, remember_theme=remember_theme
         )

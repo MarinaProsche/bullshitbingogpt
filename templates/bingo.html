@@ -45,6 +45,7 @@
 </div>
 <div class="text-wrap fs-5" style="width: 77rem;">
   <p id="moving_text">{{result_message}}</p>
+  <a href="/" id="ButtonForReturn" style="{% if theme %}display: none;{% endif %}">generate a new one</a>
   <p></p>
 </div>
 <form action="/bingo" method="post">
@@ -67,6 +68,21 @@
     document.getElementById('count').innerHTML = this.value.length + "/240000";
     if (this.value.length > 240000) { document.getElementById("submit").disabled = true; }
     else { document.getElementById("submit").disabled = false; }
+  };
+  var movingText = document.getElementById("moving_text");
+  var ButtonForReturn = document.getElementById("ButtonForReturn");
+
+  if (ButtonForReturn && movingText) {
+    movingText.addEventListener("animationend", function () {
+      setTimeout(function () {
+        ButtonForReturn.style.display = "inline";
+      }, 1000);
+    });
+  } else {
+    // Fallback: If elements not found, display button immediately
+    if (ButtonForReturn) {
+      ButtonForReturn.style.display = "inline";
+    }
   }
 </script>
 {% endblock %}

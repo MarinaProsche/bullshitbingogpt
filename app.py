@@ -60,7 +60,7 @@ def extract_theme():
 @app.route("/bingo", methods=["post", "get"])
 def bingo():
     theme_for_message = ''
-    
+
     if request.method == "GET":
         return render_template("index.html")
     if request.method == "POST":
@@ -96,11 +96,11 @@ def bingo():
             result_message = get_result_message(
                 theme=theme_for_message,
                 score=len([x for x in buzz_m_list if x.match]) - 1,
-            ) + f'\n\nTry another one text with "{theme_for_message}"-theme?'
+            ) + f'\n\nTry another one text with "{theme_for_message.strip()}"-theme or '
         else:
-            result_message = (f'GREAT! We have the most common cliches for theme "{theme}"\n'
+            result_message = (f'GREAT! We have the most common cliches for theme "{theme.strip()}"\n'
             + f'Now you can insert your text (up to 240000 symbols), and see, if you win the bingo!')
 
         return render_template(
-            "bingo.html", buzz_m_list=buzz_m_list, buzzword_serial=buzzword_serial, result_message=result_message, remember_theme=remember_theme
+            "bingo.html", buzz_m_list=buzz_m_list, buzzword_serial=buzzword_serial, result_message=result_message, remember_theme=remember_theme, theme=theme
         )

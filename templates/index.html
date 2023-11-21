@@ -14,21 +14,30 @@
     {% else %}
     <p>🚀🚀 Welcome to Bullshit Bingo GPT! 🚀🚀</p>
     <p>The go-to platform for transforming your text into an interactive game of clichés, jargon, and buzzwords.
-        Simply input your theme and text 📖 and let our sophisticated algorithm sift through it, identifying the most notorious
+        Simply input your theme and text 📖 and let our sophisticated algorithm sift through it, identifying the most
+        notorious
         and
         overused phrases. If you are not sure about the theme, use "Extract theme".↗️↗️
-        <p>In moments, you'll have a unique bingo card ready for some fun! 🎰</p>
+    <p>In moments, you'll have a unique bingo card ready for some fun! 🎰</p>
     <p>Whether you're sitting through a corporate presentation, reading a marketing pitch, or simply want to find out
         how
         much jargon fills your own writings, Bullshit Bingo GPT has got you covered. Discover the buzz in your text and
         let the games begin! 🏁</p>
-    {% endif %}
     <p></p>
+    {% endif %}
+    <br>
+    <div class="d-flex justify-content-center">__________<img src="{{ url_for('static', filename=bingo) }}" width=200
+            height=50 frameBorder="0" allowFullScreen> __________
+    </div>
+    <br>
+    <br>
 </div>
 <form action="/bingo" method="post">
     <div>
         <div class="container-info">
-            <label for="input_theme">Insert your theme (up to 1000 symbols)</label>
+            <label for="input_theme">Insert your theme with a few specific details
+                <p> ("Fiction about sad and hard woman destiny", "Uplifting text about AI-power in our future"...)</p>
+            </label>
             <div id="count">0/1000</div>
         </div>
         <p><textarea id="textarea" name="input_theme" cols="120" rows="2"></textarea></p>

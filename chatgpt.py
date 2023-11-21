@@ -14,7 +14,7 @@ openai.api_key = openai_key()
 
 def generate_buzzwords_for_theme(theme):
     prompt = (
-        "create 24 buzzwords or cliches (using short phrase, max 2 words) that could be used for bullshit bingo for this theme: \n\n\n"
+        "create 24 stereotypical buzzwords, cliches or obstacles (using short phrase, max 2 words) that could meet in a text with this theme: \n\n\n"
         + theme
     )
     buzzwords = chat_with_chatgpt(prompt=prompt, model="gpt-4")

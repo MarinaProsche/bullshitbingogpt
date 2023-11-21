@@ -28,7 +28,8 @@ app = Flask(__name__, template_folder="templates")
 @app.route("/", methods=["get"])
 def index():
     gif_file = "robot.gif"
-    return render_template("index.html", gif_file=gif_file)
+    bingo = 'bingo.gif'
+    return render_template("index.html", gif_file=gif_file, bingo=bingo)
 
 @app.route("/about", methods=["GET"])
 def text_about():
@@ -100,7 +101,7 @@ def bingo():
             ) + f'\n\nTry another one text with "{theme_for_message.strip()}"-theme or '
         else:
             result_message = (f'GREAT! We have the most common cliches for theme "{theme.strip()}"\n'
-            + f'Now you can insert your text (up to 240000 symbols), and see, if you win the bingo!')
+            + f'Now you can insert your text (up to 240000 symbols), and see, if you win the bingo! 🚀🚀')
 
         return render_template(
             "bingo.html", buzz_m_list=buzz_m_list, buzzword_serial=buzzword_serial, result_message=result_message, remember_theme=remember_theme, theme=theme

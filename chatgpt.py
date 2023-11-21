@@ -59,7 +59,7 @@ def get_text_about():
     return chat_with_chatgpt(prompt=prompt)
 
 def chat_with_chatgpt(prompt, model="gpt-3.5-turbo-16k"):
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         # engine=model,
         model=model,
         messages=[{"role": "user", "content": prompt}],

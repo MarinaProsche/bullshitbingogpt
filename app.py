@@ -27,7 +27,8 @@ app = Flask(__name__, template_folder="templates")
 
 @app.route("/", methods=["get"])
 def index():
-    return render_template("index.html")
+    gif_file = "robot.gif"
+    return render_template("index.html", gif_file=gif_file)
 
 @app.route("/about", methods=["GET"])
 def text_about():

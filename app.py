@@ -3,7 +3,7 @@ import json
 from flask import Flask, render_template, request
 import openai
 from chatgpt import (
-    find_theme_for_sent_text,
+    # find_theme_for_sent_text,
     find_general_theme_for_sent_text,
     match_buzzwords,
     get_result_message,

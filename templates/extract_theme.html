@@ -8,51 +8,41 @@
     }
 </style>
 <div class="text-wrap fs-5" style="width: 77rem;">
+    
     {% if chat_response %}
     <p> ChatGPT response was: <b>"{{ chat_response }}"</b></p>
-    
-    <p> Try another text: </p>
 
-    {% else %}
-    <h2>🚀 Textual Theme Extractor 🚀</h2>
+    <a href="/" id="ButtonForReturn">Go and generate buzzwords!</a>
+    <div class="d-flex justify-content-center">
+        <img src="{{ url_for('static', filename=bullshit) }}" width=300 height=150.000 frameBorder="0" allowFullScreen>
+    </div>
+</div>
+<p> ✍🏻✍🏻Try another text: </p>
 
-    <p>
-        If you don't know the theme of the text, you can use Theme Extractor!!!
-        Discover Deeper Insights!
-        <br />
-        Unlock the core essence of any text with our cutting-edge Textual Theme Extractor. Dive into narratives,
-        understand nuances, and leverage AI-driven insights.
-    </p>
+{% else %}
+<h2>🚀 Textual Theme Extractor 🚀</h2>
 
+<p>
+    If you don't know the theme of the text, you can use Theme Extractor!!!
+    Discover Deeper Insights!</p>
+<br />
+Unlock the core essence of any text with our cutting-edge Textual Theme Extractor.
+<p>Dive into narratives,
+    understand nuances, and leverage AI-driven insights.
+</p>
+<h3>🌟 Key Features 🌟</h3>
+<p>
+<ul>
+    <li>Dynamic Narratives: Understand every text's core essence.</li>
+    <li>Optimized Insights: From top-level takeaways to minute details.</li>
+    <li>AI-Powered Analysis: Holistic and actionable results every time.</li>
+</ul>
+<p></p>
+<h3> Connect & Revolutionize Your Text Analysis! </h3>
 
-    <h3>🌟 Key Features 🌟</h3>
-
-    <p>
-    <ul>
-        <li>Dynamic Narratives: Understand every text's core essence.</li>
-        <li>Optimized Insights: From top-level takeaways to minute details.</li>
-        <li>AI-Powered Analysis: Holistic and actionable results every time.</li>
-    </ul>
-    </p>
-
-    <h3>🎯 Beneficiaries 🎯</h3>
-
-    <ul>
-        <li>Thought Leaders: Grasp the zeitgeist effortlessly.</li>
-        <li>Start-ups & Enterprises: Gain a competitive textual edge.</li>
-        <li>Educators & Content Creators: Enhance comprehension and strategy.</li>
-    </ul>
-
-    <h3>Customized Solutions Available!</h3>
-    <p>
-        Need tailor-made integrations? We’ve got you covered. Elevate your textual game today.
-    </p>
-
-    <h3> Connect & Revolutionize Your Text Analysis! </h3>
-
-    <i>Textual Theme Extractor - Where Every Word Counts.</i>
-    {% endif %}
-    <p></p>
+<i>Textual Theme Extractor - Where Every Word Counts.</i>
+{% endif %}
+<p></p>
 </div>
 
 <form action="" method="post">

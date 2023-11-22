@@ -39,23 +39,25 @@ def text_about():
 
 @app.route("/extract_theme", methods=["post", "get"])
 def extract_theme():
+    bullshit = 'bullshit.gif'
     if request.method == "GET":
-        return render_template("extract_theme.html")
+        gif_file = "robot.gif"
+        return render_template("extract_theme.html", gif_file=gif_file)
     if request.method == "POST":
         text = request.form.get("input_text")
         themes = get_theme_architecture()
         general_theme = find_general_theme_for_sent_text(themes=list(themes), text=text)
-        for theme in themes:
-            if theme.lower() in general_theme.lower():
-                list_of_under_themes = themes[theme]
-                theme_of_sent_text = find_theme_for_sent_text(
-                    text=text, under_themes=list_of_under_themes
-                )
-                return render_template(
-                    "extract_theme.html", chat_response=theme_of_sent_text
-                )
-        else:
-            return render_template("extract_theme.html", chat_response=general_theme)
+        # for theme in themes:
+        #     if theme.lower() in general_theme.lower():
+        #         list_of_under_themes = themes[theme]
+        #         theme_of_sent_text = find_theme_for_sent_text(
+        #             text=text, under_themes=list_of_under_themes
+        #         )
+        #         return render_template(
+        #             "extract_theme.html", chat_response=theme_of_sent_text
+        #         )
+        # else:
+        return render_template("extract_theme.html", chat_response=general_theme, bullshit=bullshit)
         
 
 
@@ -99,7 +101,7 @@ def bingo():
             result_message = get_result_message(
                 theme=theme_for_message,
                 score=len([x for x in buzz_m_list if x.match]),
-            ) + f'\n\nTry another one text with "{theme_for_message.strip()}"-theme or '
+            ) + f'\n\nTry another one text with "{theme_for_message.strip()}" or '
         else:
             result_message = (f'GREAT! We have the most common cliches for theme "{theme.strip()}"\n'
             + f'Now you can insert your text (up to 240000 symbols), and see, if you win the bingo! 🚀🚀')

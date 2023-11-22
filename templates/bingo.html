@@ -48,7 +48,7 @@
 <p></p>
 </div>
 <div class="text-wrap fs-5" style="width: 77rem;">
-  <p id="moving_text">{{result_message}}</p>
+  <p id="moving_text">{{result_message}}</p><a href="/" id="ButtonForReturn" style="display: none;">generate a new one</a>
   {%if not theme%}
   <a href="/" id="ButtonForReturn" style="display: none;">generate a new one</a>
   <!-- <a href="/" id="ButtonForReturn" style="{% if theme %}display: none;{% endif %}">generate a new one</a> -->
@@ -80,6 +80,6 @@
   // Use setTimeout to make the button appear after 2 seconds
   setTimeout(function () {
     document.getElementById("ButtonForReturn").style.display = "inline"; // Or use "block" instead of "inline"
-  }, 2000);
+  }, 2500);
 </script>
 {% endblock %}

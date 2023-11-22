@@ -24,7 +24,7 @@ def generate_buzzwords_for_theme(theme):
 def find_general_theme_for_sent_text(themes, text):
     themes_str = "\n".join(themes)
     prompt = (
-        f"this is the text \n\n{text}.\n\nWhat kind of theme is it? Give a theme and a genre (fiction, non-fiction, article, resume) \n\n{themes_str}"
+        f"this is the text \n\n{text}.\n\nWhat kind of theme is it? Give a theme in short phrase, that contains a few details and a genre (text about, fiction, non-fiction, article, resume) \n\n{themes_str}"
     )
     print(prompt)
     general_theme = chat_with_chatgpt(prompt=prompt)

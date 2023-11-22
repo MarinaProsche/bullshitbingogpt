@@ -93,7 +93,8 @@
     </a>
 
     <ul class="nav nav-pills pr-4">
-      <li class="nav-item"><a href="/extract_theme" class="nav-link padded-link" aria-current="page">Extract theme</a></li>
+      <li class="nav-item"><a href="/extract_theme" class="nav-link padded-link" aria-current="page">Extract theme</a>
+      </li>
       <li class="nav-item"><a href="/about" class="nav-link padded-link" aria-current="page">About</a></li>
     </ul>
   </header>
@@ -101,16 +102,18 @@
     <div id="content">{% block content %}{% endblock %}</div>
     <div class="loading-container fs-4" id="spinner-container" style="display: none">
       <div class="loading-spinner">
-      <div>Please, be patient.
-        <br/>Chat GPT generates an answer for you 🦾🦾 
-        <br>________________________________________</br>
-        <p></p>
+        <div>Please, be patient.
+          <br />Chat GPT generates an answer for you 🦾🦾
+          <br>________________________________________</br>
+          <p></p>
+        </div>
+        <div>
+          <br>
+          <img src="{{ url_for('static', filename=gif_file) }}" width=480 height=270.000 frameBorder="0"
+            allowFullScreen>
+          <!-- <iframe src="https://s.yimg.com/ny/api/res/1.2/REpW_mQQvAj5FEg35TQnWg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTQ5NDtjZj13ZWJw/https://media.zenfs.com/en-US/homerun/mic_26/33a1f72f9c7070a836bf5b47c3c57480" width=480 height=270.000 frameBorder="0" allowFullScreen></iframe> -->
+        </div>
       </div>
-    <div>
-      <br>
-      <img src="{{ url_for('static', filename=gif_file) }}" width=480 height=270.000 frameBorder="0" allowFullScreen>
-      <!-- <iframe src="https://s.yimg.com/ny/api/res/1.2/REpW_mQQvAj5FEg35TQnWg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTQ5NDtjZj13ZWJw/https://media.zenfs.com/en-US/homerun/mic_26/33a1f72f9c7070a836bf5b47c3c57480" width=480 height=270.000 frameBorder="0" allowFullScreen></iframe> -->
-    </div></div>
     </div>
 
   </div>

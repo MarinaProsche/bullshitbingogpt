@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 
 TEXT_ABOUT_LANGUAGE = "\n\n\n give the answer in the same language as the text"
 
@@ -8,8 +8,8 @@ def openai_key():
         key = f.read().strip()
         return key
 
-
-openai.api_key = openai_key()
+client = OpenAI(api_key=openai_key())
+# openai.api_key = openai_key()
 
 
 def generate_buzzwords_for_theme(theme):
@@ -59,7 +59,7 @@ def get_text_about():
     return chat_with_chatgpt(prompt=prompt)
 
 def chat_with_chatgpt(prompt, model="gpt-3.5-turbo-16k"):
-    response = openai.chat.completions.create(
+    response = client.chat.completions.create(
         # engine=model,
         model=model,
         messages=[{"role": "user", "content": prompt}],

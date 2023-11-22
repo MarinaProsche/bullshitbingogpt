@@ -48,10 +48,9 @@
 <p></p>
 </div>
 <div class="text-wrap fs-5" style="width: 77rem;">
-  <p id="moving_text">{{result_message}}</p><a href="/" id="ButtonForReturn" style="display: none;">generate a new one</a>
-  {%if not theme%}
-  <a href="/" id="ButtonForReturn" style="display: none;">generate a new one</a>
-  <!-- <a href="/" id="ButtonForReturn" style="{% if theme %}display: none;{% endif %}">generate a new one</a> -->
+  <p id="moving_text">{{result_message}}</p>
+  {% if not theme %}
+  <a href="/" id="ButtonForReturn" style="display: none;">generate a new theme</a>
   {%endif%}
   <p></p>
 </div>
@@ -77,9 +76,8 @@
     else { document.getElementById("submit").disabled = false; }
   }
 
-  // Use setTimeout to make the button appear after 2 seconds
   setTimeout(function () {
-    document.getElementById("ButtonForReturn").style.display = "inline"; // Or use "block" instead of "inline"
-  }, 2500);
+    document.getElementById("ButtonForReturn").style.display = "inline";
+  }, 2000);
 </script>
 {% endblock %}

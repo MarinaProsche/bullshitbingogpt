@@ -19,9 +19,22 @@
 </div>
 <p> ✍🏻✍🏻Try another text: </p>
 
+<form action="" method="post">
+    <div>
+        <div class="container-info">
+            <label for="input_text">Insert your text (up to 60,000 symbols)</label>
+            <div id="count">0/60000</div>
+        </div>
+        <textarea id="textarea" name="input_text" cols="120" rows="20"></textarea>
+    </div>
+    <div class="d-flex justify-content-center">
+        <input class="btn btn-primary fs-5" id="submit" value="send your text" type="submit"></input>
+    </div>
+    <p></p>
+</form>
+
 {% else %}
 <h2>🚀 Textual Theme Extractor 🚀</h2>
-
 <p>
     If you don't know the theme of the text, you can use Theme Extractor!!!
     Discover Deeper Insights!</p>
@@ -41,10 +54,11 @@ Unlock the core essence of any text with our cutting-edge Textual Theme Extracto
 <h3> Connect & Revolutionize Your Text Analysis! </h3>
 
 <i>Textual Theme Extractor - Where Every Word Counts.</i>
-{% endif %}
+
 <p></p>
 </div>
 
+{% if show_form %}
 <form action="" method="post">
     <div>
         <div class="container-info">
@@ -58,6 +72,8 @@ Unlock the core essence of any text with our cutting-edge Textual Theme Extracto
     </div>
     <p></p>
 </form>
+{% endif %}
+{% endif %}
 <script>
     document.getElementById('textarea').onkeyup = function () {
         document.getElementById('count').innerHTML = this.value.length + "/60000";

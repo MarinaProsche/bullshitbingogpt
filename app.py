@@ -40,9 +40,9 @@ def text_about():
 @app.route("/extract_theme", methods=["post", "get"])
 def extract_theme():
     bullshit = 'bullshit.gif'
+    gif_file = "robot.gif"
     if request.method == "GET":
-        gif_file = "robot.gif"
-        return render_template("extract_theme.html", gif_file=gif_file)
+        return render_template("extract_theme.html", gif_file=gif_file, show_form = True)
     if request.method == "POST":
         text = request.form.get("input_text")
         themes = get_theme_architecture()
@@ -57,7 +57,7 @@ def extract_theme():
         #             "extract_theme.html", chat_response=theme_of_sent_text
         #         )
         # else:
-        return render_template("extract_theme.html", chat_response=general_theme, bullshit=bullshit)
+        return render_template("extract_theme.html", chat_response=general_theme, bullshit=bullshit, gif_file=gif_file, show_form = False)
         
 
 

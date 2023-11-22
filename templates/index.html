@@ -35,12 +35,12 @@
 <form action="/bingo" method="post">
     <div>
         <div class="container-info">
-            <label for="input_theme">Insert your theme with a few specific details
-                <p> ("Fiction about sad and hard woman destiny", "Uplifting text about AI-power in our future"...)</p>
+            <label for="input_theme">Insert your theme with a few specific details:
+                <!-- <p> ("Fiction about sad and hard woman destiny", "Uplifting text about AI-power in our future"...)</p> -->
             </label>
             <div id="count">0/1000</div>
         </div>
-        <p><textarea id="textarea" name="input_theme" cols="120" rows="2"></textarea></p>
+        <p><textarea id="textarea" name="input_theme" cols="120" rows="2" placeholder='Fiction about sad and hard woman destiny? Or uplifting text about AI-power in our future?..'></textarea></p>
     </div>
     <div class="d-flex justify-content-center">
         <input class="btn btn-primary fs-5" id="submit" value="send" type="submit"></input>

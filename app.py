@@ -31,10 +31,14 @@ def index():
     bingo = 'bingo.gif'
     return render_template("index.html", gif_file=gif_file, bingo=bingo)
 
-@app.route("/about", methods=["GET"])
+@app.route("/about", methods=["POST", "GET"])
 def text_about():
-    text_about = get_text_about()
-    return render_template("about.html", text_about=text_about)
+    code_file = "code.png"
+    if request.method == "GET":
+        return render_template("about.html", code_file=code_file)
+    if request.method == "POST":
+        text_about = get_text_about()
+        return render_template("about.html", text_about=text_about, code_file=code_file)
 
 
 @app.route("/extract_theme", methods=["post", "get"])

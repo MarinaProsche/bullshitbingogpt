@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="text-wrap fs-5" style="width: 77rem;">
-  <p id="moving_text">{{text_about}}</p>
+  Well, let me provide you with a description of what's happening here..🤔
   <p></p>
+
+<div class="text-wrap fs-5" style="width: 77rem; text-align: center;">
+  <img src="{{ url_for('static', filename=code_file) }}"  allowFullScreen>
+</div>
+<br>
+<div class="text-wrap fs-5" style="width: 97%; display: flex; justify-content: space-between; align-items: baseline;">
+  <span>⌨️ Press the button, and I will create a description specifically for you.🤓🧙🏻</span>
+  <form action="/about" method="POST" style="margin-left: auto;">
+    <input class="btn btn-primary fs-5" id="submit" value="Go!" type="submit" style="background-color: black; color: rgb(124, 168, 197);"></input>
+  </form>
+</div>
+</form>
+<p id="moving_text" style="font-size: 90%; margin-bottom: 3px;">{{text_about}}</p>
 </div>
 <style>
   .fixed-cell {

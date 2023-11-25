@@ -23,7 +23,7 @@ class BuzzwordsMatch:
 
 
 app = Flask(__name__, template_folder="templates")
-
+app.static_folder = 'static'
 
 @app.route("/", methods=["get"])
 def index():
@@ -33,12 +33,13 @@ def index():
 
 @app.route("/about", methods=["POST", "GET"])
 def text_about():
+    bullshit = 'bullshit.gif'
     code_file = "code.png"
     if request.method == "GET":
-        return render_template("about.html", code_file=code_file)
+        return render_template("about.html", code_file=code_file, bullshit=bullshit)
     if request.method == "POST":
         text_about = get_text_about()
-        return render_template("about.html", text_about=text_about, code_file=code_file)
+        return render_template("about.html", text_about=text_about, code_file=code_file, bullshit=bullshit)
 
 
 @app.route("/extract_theme", methods=["post", "get"])

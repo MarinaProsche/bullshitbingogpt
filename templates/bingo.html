@@ -80,4 +80,29 @@
     document.getElementById("ButtonForReturn").style.display = "inline";
   }, 2000);
 </script>
+<style>
+  /* Add the following styles to position the spinner container */
+  #spinner-container2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const spinnerContainer = document.getElementById('spinner-container2');
+    const submit = document.getElementById('submit');
+
+    submit.addEventListener('click', function (event) {
+      spinnerContainer.style.display = 'flex'; // Show the spinner container
+    });
+  });
+</script>
 {% endblock %}
+

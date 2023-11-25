@@ -4,34 +4,43 @@
   Well, let me provide you with a description of what's happening here..🤔
   <p></p>
 
-<div class="text-wrap fs-5" style="width: 77rem; text-align: center;">
-  <img src="{{ url_for('static', filename=code_file) }}"  allowFullScreen>
+  <div class="text-wrap fs-5" style="width: 77rem; text-align: center;">
+    <img src="{{ url_for('static', filename=code_file) }}" allowFullScreen>
+  </div>
+  <br>
+  <div class="text-wrap fs-5" style="width: 97%; display: flex; justify-content: space-between; align-items: baseline;">
+    <span>⌨️ Press the button, and I will create a description specifically for you.🤓🧙🏻</span>
+    <form action="/about" method="POST" style="margin-left: auto;">
+      <input class="btn btn-primary fs-5" id="submit" value="Go!" type="submit"
+        style="background-color: black; color: rgb(124, 168, 197);"></input>
+    </form>
+  </div>
+  <br>
+  <p id="moving_text" style="font-size: 90%; margin-bottom: 3px;">{{text_about}}</p>
 </div>
-<br>
-<div class="text-wrap fs-5" style="width: 97%; display: flex; justify-content: space-between; align-items: baseline;">
-  <span>⌨️ Press the button, and I will create a description specifically for you.🤓🧙🏻</span>
-  <form action="/about" method="POST" style="margin-left: auto;">
-    <input class="btn btn-primary fs-5" id="submit" value="Go!" type="submit" style="background-color: black; color: rgb(124, 168, 197);"></input>
-  </form>
-</div>
-</form>
-<p id="moving_text" style="font-size: 90%; margin-bottom: 3px;">{{text_about}}</p>
-</div>
+
 <style>
-  .fixed-cell {
-    max-width: 119px;
-    /* Set the desired width for the cells */
-    max-height: 119px;
-    /* Set the same height as width for square cells */
-    width: 119px;
-    /* Set the desired width for the cells */
-    height: 119px;
-    /* Set the same height as width for square cells */
-    text-align: center;
-    vertical-align: middle;
-    font-weight: bold;
-    border: 2px solid black;
-    /* Set border to be 2px solid black */
+  /* Add the following styles to position the spinner container */
+  #spinner-container2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const spinnerContainer = document.getElementById('spinner-container2');
+    const submit = document.getElementById('submit');
+
+    submit.addEventListener('click', function (event) {
+      spinnerContainer.style.display = 'flex'; // Show the spinner container
+    });
+  });
+</script>
 {% endblock %}

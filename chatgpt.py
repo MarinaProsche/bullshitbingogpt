@@ -52,10 +52,9 @@ def get_result_message(theme, score):
     return chat_with_chatgpt(prompt=prompt)
 
 def get_text_about():
-    prompt = (f'Please write description for the website "Bullshit Bingo GPT" where you can provide an input ' +
-        f'text and it automatically generates bullshit bingo card for this text by exposing buzzwords, cliches from the text. ' + 
-        f'We are using power of modern AI, you should mention it. Use as much bullshit in your answer. Use a lot of emojis. ' +
-        f"Note that we don't store users text on the server, so it's confidential.")
+    prompt = (f'Please write description (up to 150 words) for the website "Bullshit Bingo GPT" where you can provide an input ' +
+        f'text and it automatically generates bullshit bingo card for this text by exposing buzzwords and cliches from the text. ' + 
+        f'We are using power of modern AI, you should mention it. Use a lot of bullshit in your answer. Use a lot of emojis. ')
     return chat_with_chatgpt(prompt=prompt)
 
 def chat_with_chatgpt(prompt, model="gpt-3.5-turbo-16k"):

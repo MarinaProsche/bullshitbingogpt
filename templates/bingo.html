@@ -4,25 +4,19 @@
 <style>
   .fixed-cell {
     max-width: 119px;
-    /* Set the desired width for the cells */
     max-height: 119px;
-    /* Set the same height as width for square cells */
     width: 119px;
-    /* Set the desired width for the cells */
     height: 119px;
-    /* Set the same height as width for square cells */
     text-align: center;
     vertical-align: middle;
     font-weight: bold;
     border: 2px solid black;
-    /* Set border to be 2px solid black */
+
   }
 
   .table-bordered {
     border: 2px solid black;
-    /* Set border for the table to be 2px solid black */
     border-collapse: collapse;
-    /* Collapse borders to avoid double borders */
   }
 </style>
 <div class="text-wrap fs-5" style="width: 77rem;">
@@ -63,7 +57,8 @@
     <p><textarea id="textarea" name="input_user_text" cols="120" rows="20"></textarea></p>
   </div>
   <div class="d-flex justify-content-center">
-    <input class="btn btn-primary fs-5" id="submit" value="check" type="submit"></input>
+    <input class="btn btn-primary fs-5" id="submit" value="check" type="submit"
+      style="background-color: rgb(51, 48, 48); color: rgb(211, 146, 25);"></input>
   </div>
   <p></p>
   <input type="hidden" name="buzzword_serial" value="{{buzzword_serial}}"></input>
@@ -81,7 +76,6 @@
   }, 1000);
 </script>
 <style>
-
   #spinner-container3 {
     position: absolute;
     top: 0;
@@ -105,4 +99,3 @@
   });
 </script>
 {% endblock %}
-

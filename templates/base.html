@@ -13,7 +13,6 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      /* Ensure the body takes up at least the viewport height */
       margin: 0;
     }
 
@@ -24,7 +23,6 @@
 
     #footer {
       flex-shrink: 0;
-      /* Prevent the footer from shrinking */
     }
 
     .center-content {
@@ -32,31 +30,35 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      /* Align content to the top */
       flex: 1;
-      /* Allow the content to grow and take available space */
     }
 
     .padded-link {
       padding-right: 100px;
-      /* Adjust the padding as needed */
     }
+
+    /* Don't touch it! It is working now!! */
 
     #move_pic {
       position: relative;
-      width: 40vw;
-      height: 40vh;
+      width: 55vw;
+      height: 55vh;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      left: -100px;
+      top: -200px;
+      bottom: -1000;
+
     }
 
     #movingImage {
       position: absolute;
-      width: 40%;
-      height: 50%;
+      width: 13%;
+      height: 18%;
       transition: transform 1s ease-in-out;
+      justify-content: center;
     }
   </style>
   <script>
@@ -72,7 +74,7 @@
           textContainer.innerHTML = textToAnimate.substring(0, currentIndex) + '█';
           textContainer.innerHTML = textContainer.innerHTML.replaceAll('\n', '<br/>')
           currentIndex++;
-          setTimeout(animateText, Math.floor(Math.random() + 0.005) * 300 + 5); // Adjust the time interval for the animation
+          setTimeout(animateText, Math.floor(Math.random() + 0.005) * 300 + 5); //time interval for the animation
         }
         else { textContainer.innerHTML = textToAnimate.replaceAll('\n', '<br/>'); }
       }
@@ -87,12 +89,11 @@
       const aboutLink1 = document.querySelector('.nav-link1');
 
       aboutLink1.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent the link from navigating
+        event.preventDefault();
 
-        spinnerContainer.style.display = 'flex'; // Show the spinner container
+        spinnerContainer.style.display = 'flex'; // Show the spinner container general
         wrapperContainer.style.display = 'none';
 
-        // Simulate loading completion after 3 seconds (adjust as needed)
         window.location.href = aboutLink.href;
       });
     });
@@ -103,12 +104,11 @@
       const aboutLink2 = document.querySelector('.nav-link2');
 
       aboutLink2.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent the link from navigating
+        event.preventDefault();
 
-        spinnerContainer.style.display = 'flex'; // Show the spinner container
+        spinnerContainer.style.display = 'flex'; // Show the spinner container for about
         wrapperContainer.style.display = 'none';
 
-        // Simulate loading completion after 3 seconds (adjust as needed)
         window.location.href = aboutLink.href;
       });
     });
@@ -119,12 +119,11 @@
       const aboutLink3 = document.querySelector('.nav-link3');
 
       aboutLink3.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent the link from navigating
+        event.preventDefault(); // 
 
-        spinnerContainer.style.display = 'flex'; // Show the spinner container
+        spinnerContainer.style.display = 'flex'; // Show the spinner container for bingo
         wrapperContainer.style.display = 'none';
 
-        // Simulate loading completion after 3 seconds (adjust as needed)
         window.location.href = aboutLink.href;
       });
     });
@@ -136,16 +135,19 @@
       const containerWidth = container.clientWidth;
       const containerHeight = container.clientHeight;
 
-      const maxX = containerWidth - image.clientWidth;
-      const maxY = containerHeight - image.clientHeight;
+      const spreadFactor = 0.65; // little digit -- big spread!!! Don't touch it!
 
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
+      const maxX = containerWidth - image.clientWidth * (1 - spreadFactor);
+      const maxY = containerHeight - image.clientHeight * (1 - spreadFactor);
+
+      const randomX = Math.floor(Math.random() * maxX * (1 - spreadFactor));
+      const randomY = Math.floor(Math.random() * maxY * (1 - spreadFactor));
+
+      // const randomX = Math.random() < 0.5 ? Math.floor(Math.random() * maxX) : -Math.floor(Math.random() * maxX);
+      // const randomY = Math.random() < 0.5 ? Math.floor(Math.random() * maxY) : -Math.floor(Math.random() * maxY);
 
       image.style.transform = `translate(${randomX}px, ${randomY}px)`;
     }
-
-    // Move the image every 3 seconds (adjust the interval as needed)
     setInterval(moveImage, 2000);
   </script>
   {% endblock %}
@@ -197,12 +199,8 @@
     </div>
     <div class="loading-container fs-4" id="spinner-container3" style="display: none">
       <div class="loading-spinner">
-        <div class="text-center">
-          <br />Let the magic happen!
-        </div>
         <div id="move_pic">
-          <br>
-          <img id="movingImage" src="{{ url_for('static', filename=hand) }}" width=40% height=40% frameBorder="0" allowFullScreen>
+          <img id="movingImage" src="{{ url_for('static', filename=hand) }}" frameBorder="0" allowFullScreen>
         </div>
       </div>
     </div>

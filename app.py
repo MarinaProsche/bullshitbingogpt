@@ -52,6 +52,8 @@ def extract_theme():
         text = request.form.get("input_text")
         themes = get_theme_architecture()
         general_theme = find_general_theme_for_sent_text(themes=list(themes), text=text)
+        
+        # In case of solid themes:
         # for theme in themes:
         #     if theme.lower() in general_theme.lower():
         #         list_of_under_themes = themes[theme]
@@ -62,6 +64,7 @@ def extract_theme():
         #             "extract_theme.html", chat_response=theme_of_sent_text
         #         )
         # else:
+        
         return render_template("extract_theme.html", chat_response=general_theme, bullshit=bullshit, gif_file=gif_file, show_form = False)
         
 

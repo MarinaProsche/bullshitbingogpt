@@ -13,18 +13,19 @@
     <p>Please, try again:</p>
     {% else %}
     <p>🚀🚀 Hello! Welcome to Bullshit Bingo GPT! I am your trusty Little Bingo Helper!🚀🚀
-        </p>
+    </p>
     <p>Check your text for originality! Don't hesitate, input the theme of your text,
         and I'll generate a bingo card with the most popular clichés for it. 🪄🪄
         If you have a text but are unsure about the theme, head to "extract theme," and we'll find it together! ↗️↗️↗️
-    <p>Ready for some fun? Whether you're sitting through a corporate presentation 🎰, reading a marketing pitch, or simply want to find out
+    <p>Ready for some fun? Whether you're sitting through a corporate presentation 🎰, reading a marketing pitch, or
+        simply want to find out
         how much jargon fills your own writings, Little Bingo Helper is always here for you.🔮🔮</p>
     <p>Uncover the secrets of your text and let the game begin! 🏁 🏁</p>
     <p></p>
     {% endif %}
     <br>
-    <div class="d-flex justify-content-center">__________<img src="{{ url_for('static', filename=bingo) }}" width=200
-            height=50 frameBorder="0" allowFullScreen> __________
+    <div class="d-flex justify-content-center">__________<img src="{{ url_for('static', filename=bingo) }}" width=100
+            height=100 frameBorder="0" allowFullScreen> __________
     </div>
     <br>
     <br>
@@ -42,7 +43,8 @@
         </p>
     </div>
     <div class="d-flex justify-content-center">
-        <input class="btn btn-primary fs-5" id="submit" value="send" type="submit"></input>
+        <input class="btn btn-primary fs-5" id="submit" value="send" type="submit"
+            style="background-color: rgb(51, 48, 48); color: rgb(211, 146, 25);"></input>
     </div>
     <p></p>
 </form>

@@ -35,7 +35,7 @@
       {% for i in range(5) %}
       <tr>
         {% for j in range(5) %}
-        <td class="fixed-cell" {% if buzz_m_list[i*5+j].match %} style="background-color:#00FF00" {% else %} {% endif
+        <td class="fixed-cell" {% if buzz_m_list[i*5+j].match %} style="background-color:#5fbd5f" {% else %} {% endif
           %}>
           {{buzz_m_list[i*5+j].buzzword}}
         </td>
@@ -78,11 +78,11 @@
 
   setTimeout(function () {
     document.getElementById("ButtonForReturn").style.display = "inline";
-  }, 2000);
+  }, 1000);
 </script>
 <style>
-  /* Add the following styles to position the spinner container */
-  #spinner-container2 {
+
+  #spinner-container3 {
     position: absolute;
     top: 0;
     left: 0;
@@ -96,7 +96,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const spinnerContainer = document.getElementById('spinner-container2');
+    const spinnerContainer = document.getElementById('spinner-container3');
     const submit = document.getElementById('submit');
 
     submit.addEventListener('click', function (event) {

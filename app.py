@@ -70,7 +70,7 @@ def extract_theme():
 def bingo():
     theme_for_message = ''
     wow = 'wow.gif'
-
+    hand = 'hand.gif'
     if request.method == "GET":
         return render_template("index.html")
     if request.method == "POST":
@@ -112,5 +112,6 @@ def bingo():
             + f'Now you can insert your text (up to 240000 symbols), and see, if you win the bingo! 🚀🚀')
 
         return render_template(
-            "bingo.html", buzz_m_list=buzz_m_list, buzzword_serial=buzzword_serial, result_message=result_message, remember_theme=remember_theme, theme=theme, wow=wow
+            "bingo.html", buzz_m_list=buzz_m_list, buzzword_serial=buzzword_serial,
+            result_message=result_message, remember_theme=remember_theme, theme=theme, wow=wow, hand=hand
         )

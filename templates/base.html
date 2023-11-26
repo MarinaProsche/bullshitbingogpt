@@ -41,6 +41,23 @@
       padding-right: 100px;
       /* Adjust the padding as needed */
     }
+
+    #move_pic {
+      position: relative;
+      width: 40vw;
+      height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #movingImage {
+      position: absolute;
+      width: 40%;
+      height: 50%;
+      transition: transform 1s ease-in-out;
+    }
   </style>
   <script>
     fn = function () {
@@ -67,9 +84,9 @@
     document.addEventListener('DOMContentLoaded', function () {
       const spinnerContainer = document.getElementById('spinner-container');
       const wrapperContainer = document.getElementById('content');
-      const aboutLink = document.querySelector('.nav-link');
+      const aboutLink1 = document.querySelector('.nav-link1');
 
-      aboutLink.addEventListener('click', function (event) {
+      aboutLink1.addEventListener('click', function (event) {
         event.preventDefault(); // Prevent the link from navigating
 
         spinnerContainer.style.display = 'flex'; // Show the spinner container
@@ -79,15 +96,13 @@
         window.location.href = aboutLink.href;
       });
     });
-
-    document.addEventListener('DOMContentLoaded', fn, false);
 
     document.addEventListener('DOMContentLoaded', function () {
       const spinnerContainer = document.getElementById('spinner-container2');
       const wrapperContainer = document.getElementById('content');
-      const aboutLink = document.querySelector('.nav-link');
+      const aboutLink2 = document.querySelector('.nav-link2');
 
-      aboutLink.addEventListener('click', function (event) {
+      aboutLink2.addEventListener('click', function (event) {
         event.preventDefault(); // Prevent the link from navigating
 
         spinnerContainer.style.display = 'flex'; // Show the spinner container
@@ -97,6 +112,41 @@
         window.location.href = aboutLink.href;
       });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const spinnerContainer = document.getElementById('spinner-container3');
+      const wrapperContainer = document.getElementById('content');
+      const aboutLink3 = document.querySelector('.nav-link3');
+
+      aboutLink3.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the link from navigating
+
+        spinnerContainer.style.display = 'flex'; // Show the spinner container
+        wrapperContainer.style.display = 'none';
+
+        // Simulate loading completion after 3 seconds (adjust as needed)
+        window.location.href = aboutLink.href;
+      });
+    });
+
+    function moveImage() {
+      const container = document.getElementById('move_pic');
+      const image = document.getElementById('movingImage');
+
+      const containerWidth = container.clientWidth;
+      const containerHeight = container.clientHeight;
+
+      const maxX = containerWidth - image.clientWidth;
+      const maxY = containerHeight - image.clientHeight;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      image.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    }
+
+    // Move the image every 3 seconds (adjust the interval as needed)
+    setInterval(moveImage, 2000);
   </script>
   {% endblock %}
 </head>
@@ -142,7 +192,17 @@
           <br>
           <img src="{{ url_for('static', filename=bullshit) }}" width=240 height=135.000 frameBorder="0"
             allowFullScreen>
-          <!-- <iframe src="https://s.yimg.com/ny/api/res/1.2/REpW_mQQvAj5FEg35TQnWg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTQ5NDtjZj13ZWJw/https://media.zenfs.com/en-US/homerun/mic_26/33a1f72f9c7070a836bf5b47c3c57480" width=480 height=270.000 frameBorder="0" allowFullScreen></iframe> -->
+        </div>
+      </div>
+    </div>
+    <div class="loading-container fs-4" id="spinner-container3" style="display: none">
+      <div class="loading-spinner">
+        <div class="text-center">
+          <br />Let the magic happen!
+        </div>
+        <div id="move_pic">
+          <br>
+          <img id="movingImage" src="{{ url_for('static', filename=hand) }}" width=40% height=40% frameBorder="0" allowFullScreen>
         </div>
       </div>
     </div>

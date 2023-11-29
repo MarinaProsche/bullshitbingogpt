@@ -92,10 +92,45 @@
   document.addEventListener('DOMContentLoaded', function () {
     const spinnerContainer = document.getElementById('spinner-container3');
     const submit = document.getElementById('submit');
+    const cells = document.querySelectorAll('.fixed-cell');
+
+    let intervalId; // Переменная для хранения идентификатора интервала
 
     submit.addEventListener('click', function (event) {
-      spinnerContainer.style.display = 'flex'; // Show the spinner container
+      spinnerContainer.style.display = 'flex'; // Показать контейнер с анимацией
+
+      // Запуск анимации: изменение цвета двух квадратов через интервал
+      let counter = 0;
+      intervalId = setInterval(function () {
+        cells.forEach(function (cell) {
+          // Сброс всех цветов
+          cell.style.backgroundColor = '';
+        });
+
+        // Выбор случайных двух квадратов и выделение их зеленым
+        const randomIndex1 = Math.floor(Math.random() * cells.length);
+        let randomIndex2 = Math.floor(Math.random() * cells.length);
+        
+        // Убедимся, что randomIndex1 и randomIndex2 различны
+        while (randomIndex2 === randomIndex1) {
+          randomIndex2 = Math.floor(Math.random() * cells.length);
+        }
+
+        cells[randomIndex1].style.backgroundColor = '#5fbd5f';
+        cells[randomIndex2].style.backgroundColor = '#5fbd5f';
+
+        counter++;
+
+        // Остановка анимации после некоторого количества итераций (здесь 10)
+        if (counter === 10) {
+          clearInterval(intervalId); // Остановить анимацию
+          spinnerContainer.style.display = 'none'; // Скрыть контейнер с анимацией
+          // Добавьте код для обработки завершения анимации, если необходимо
+        }
+      }, 500); // Интервал в миллисекундах (здесь 500 мс)
     });
   });
 </script>
+
+
 {% endblock %}

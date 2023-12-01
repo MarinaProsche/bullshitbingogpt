@@ -94,43 +94,65 @@
     const submit = document.getElementById('submit');
     const cells = document.querySelectorAll('.fixed-cell');
 
-    let intervalId; // Переменная для хранения идентификатора интервала
+    let intervalId;
 
-    submit.addEventListener('click', function (event) {
-      spinnerContainer.style.display = 'flex'; // Показать контейнер с анимацией
+    function setAllSquaresGreen() {
+      cells.forEach(function (cell) {
+        cell.style.backgroundColor = '#5fbd5f';
+      });
 
-      // Запуск анимации: изменение цвета двух квадратов через интервал
-      let counter = 0;
-      intervalId = setInterval(function () {
+      setTimeout(function () {
         cells.forEach(function (cell) {
-          // Сброс всех цветов
           cell.style.backgroundColor = '';
         });
+      }, 150);
+    }
 
-        // Выбор случайных двух квадратов и выделение их зеленым
-        const randomIndex1 = Math.floor(Math.random() * cells.length);
-        let randomIndex2 = Math.floor(Math.random() * cells.length);
-        
-        // Убедимся, что randomIndex1 и randomIndex2 различны
-        while (randomIndex2 === randomIndex1) {
-          randomIndex2 = Math.floor(Math.random() * cells.length);
-        }
+    submit.addEventListener('click', function (event) {
+      spinnerContainer.style.display = 'flex';
+      let counter = 0;
 
-        cells[randomIndex1].style.backgroundColor = '#5fbd5f';
-        cells[randomIndex2].style.backgroundColor = '#5fbd5f';
+      // First round of turning all squares green
+      setAllSquaresGreen();
 
-        counter++;
+      setTimeout(function () {
+        // Second round of turning all squares green
+        setAllSquaresGreen();
 
-        // Остановка анимации после некоторого количества итераций (здесь 10)
-        if (counter === 10) {
-          clearInterval(intervalId); // Остановить анимацию
-          spinnerContainer.style.display = 'none'; // Скрыть контейнер с анимацией
-          // Добавьте код для обработки завершения анимации, если необходимо
-        }
-      }, 500); // Интервал в миллисекундах (здесь 500 мс)
+        // Start the interval after the two rounds of turning all squares green
+        counter = 0;
+        intervalId = setInterval(function () {
+          cells.forEach(function (cell) {
+            cell.style.backgroundColor = '';
+          });
+
+          // Generate ten green squares with different intervals
+          for (let i = 0; i < 10; i++) {
+            const randomIndex = Math.floor(Math.random() * cells.length);
+            const interval = Math.floor(Math.random() * 1000) + 300; // Random interval between 300ms and 1300ms
+            setTimeout(function () {
+              cells[randomIndex].style.backgroundColor = '#5fbd5f';
+            }, interval);
+          }
+
+          // Generate one orange square with a different interval
+          const orangeIndex = Math.floor(Math.random() * cells.length);
+          const orangeInterval = Math.floor(Math.random() * 1000) + 300; // Random interval between 300ms and 1300ms
+          setTimeout(function () {
+            cells[orangeIndex].style.backgroundColor = 'rgb(211, 146, 25)';
+          }, orangeInterval);
+
+          counter++;
+
+          // Check if the desired condition is met
+          if (buzz_m_list[i*5+j].buzzword) {
+            clearInterval(intervalId);
+            spinnerContainer.style.display = 'none';
+          }
+        }, 300); // Total interval for the entire process (adjust as needed)
+      }, 700); // Total time for the two rounds of turning all squares green (adjust as needed)
     });
   });
 </script>
-
 
 {% endblock %}

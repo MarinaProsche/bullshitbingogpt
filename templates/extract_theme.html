@@ -2,12 +2,8 @@
 
 {% block content %}
 <style>
-    .container-info {
-        display: flex;
-        justify-content: space-between;
-    }
 </style>
-<div class="text-wrap fs-5" style="width: 77rem;">
+<div class="fs-4" style="width: 85rem;">
 
     {% if chat_response %}
     <p> ChatGPT response was: <b>"{{ chat_response }}"</b></p>
@@ -25,7 +21,7 @@
             <label for="input_text">Insert your text (up to 60,000 symbols)</label>
             <div id="count">0/60000</div>
         </div>
-        <textarea id="textarea" name="input_text" cols="120" rows="20"></textarea>
+        <textarea id="textarea" name="input_text" style="width: 100%;" rows="15"></textarea>
     </div>
     <div class="d-flex justify-content-center">
         <input class="btn btn-primary fs-5" id="submit" value="send your text" type="submit"
@@ -35,7 +31,7 @@
 </form>
 
 {% else %}
-<h2 style="text-align: center;">🚀 Textual Theme Extractor 🚀</h2>
+<h2 class="d-flex justify-content-center">🚀 Textual Theme Extractor 🚀</h2>
 <br />
 If you don't know the theme of the text, you can use Theme Extractor!!!
 Discover Deeper Insights!
@@ -66,7 +62,7 @@ Unlock the core essence of any text with our cutting-edge Textual Theme Extracto
             <label for="input_text">Insert your text (up to 60,000 symbols)</label>
             <div id="count">0/60000</div>
         </div>
-        <textarea id="textarea" name="input_text" cols="120" rows="20"></textarea>
+        <textarea id="textarea" name="input_text"style="width: 100%;" rows="15"></textarea>
     </div>
     <div class="d-flex justify-content-center">
         <input class="btn btn-primary fs-5" id="submit" value="send your text" type="submit"

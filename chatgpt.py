@@ -47,14 +47,14 @@ def match_buzzwords(text, buzzwords):
 def get_result_message(theme, score):
     prompt = (
         f"Generate short (up to 45 words) message that congratulates a player who sent text submissions got {score}"
-        + f' out of 24 in "Bullshit Bingo GPT" game that automatically matches the buzzwords for theme "{theme}". Use emojis.'
+        + f' out of 24 in "Bullshit Bingo GPT" game that automatically matches the buzzwords for theme "{theme}". Use one emoji in the end.'
     )
     return chat_with_chatgpt(prompt=prompt)
 
 def get_text_about():
     prompt = (f'Please write description (up to 150 words) for the website "Bullshit Bingo GPT" where you can provide an input ' +
         f'text and it automatically generates bullshit bingo card for this text by exposing buzzwords and cliches from the text. ' + 
-        f'We are using power of modern AI, you should mention it. Use a lot of bullshit in your answer. Use a lot of emojis. ')
+        f'We are using power of modern AI, you should mention it. Use a lot of bullshit in your answer. Use one emoji in the end. ')
     return chat_with_chatgpt(prompt=prompt)
 
 def chat_with_chatgpt(prompt, model="gpt-3.5-turbo-16k"):

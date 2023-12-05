@@ -74,8 +74,10 @@ def bingo():
     theme_for_message = ''
     wow = 'wow.gif'
     hand = 'hand.gif'
+    bingo = 'bingo.gif'
+    gif_file = "robot.gif"
     if request.method == "GET":
-        return render_template("index.html")
+        return render_template("index.html", bingo=bingo, gif_file=gif_file)
     if request.method == "POST":
         theme = request.form.get("input_theme")
         user_text = request.form.get("input_user_text")

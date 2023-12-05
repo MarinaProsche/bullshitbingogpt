@@ -65,16 +65,33 @@
   <input type="hidden" name="remember_theme" value="{{remember_theme}}"></input>
 </form>
 <script>
-  document.getElementById('textarea').onkeyup = function () {
-    document.getElementById('count').innerHTML = this.value.length + "/240000";
-    if (this.value.length > 240000) { document.getElementById("submit").disabled = true; }
-    else { document.getElementById("submit").disabled = false; }
-  }
+  document.addEventListener('DOMContentLoaded', function () {
+    const textarea = document.getElementById('textarea');
+    const count = document.getElementById('count');
+    const submitButton = document.getElementById('submit');
+    const returnButton = document.getElementById('ButtonForReturn');
 
-  setTimeout(function () {
-    document.getElementById("ButtonForReturn").style.display = "inline";
-  }, 1000);
+    updateButtonsState();
+
+    textarea.onkeyup = function () {
+      count.innerHTML = this.value.length + "/240000";
+      updateButtonsState();
+    };
+
+    function updateButtonsState() {
+      if (textarea.value.length > 240000 || textarea.value.length < 2) {
+        submitButton.disabled = true;
+      } else {
+        submitButton.disabled = false;
+      }
+    }
+
+    setTimeout(function () {
+      returnButton.style.display = "inline";
+    }, 1000);
+  });
 </script>
+
 <style>
   #spinner-container3 {
     position: absolute;
@@ -137,20 +154,19 @@
 
           // Generate one orange square with a different interval
           const orangeIndex = Math.floor(Math.random() * cells.length);
-          const orangeInterval = Math.floor(Math.random() * 1000) + 300; // Random interval between 300ms and 1300ms
+          const orangeInterval = Math.floor(Math.random() * 1000) + 300;
           setTimeout(function () {
             cells[orangeIndex].style.backgroundColor = 'rgb(211, 146, 25)';
           }, orangeInterval);
 
           counter++;
 
-          // Check if the desired condition is met
-          if (buzz_m_list[i*5+j].buzzword) {
+          if (buzz_m_list[i * 5 + j].buzzword) {
             clearInterval(intervalId);
             spinnerContainer.style.display = 'none';
           }
-        }, 400); // Total interval for the entire process (adjust as needed)
-      }, 150); // Total time for the two rounds of turning all squares green (adjust as needed)
+        }, 400); // Total interval for the entire process
+      }, 150); // Total time for the two rounds of turning all squares green
     });
   });
 </script>

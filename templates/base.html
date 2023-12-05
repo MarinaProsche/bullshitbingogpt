@@ -11,9 +11,9 @@
   <title>bullshitbingogpt</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Add a font-family property to the body or other relevant elements */
     body {
-      font-family: 'Dosis', sans-serif; /* Apply Dosis font */
+      font-family: 'Dosis', sans-serif;
+      /* Apply Dosis font */
       display: flex;
       flex-direction: column;
       min-height: 100vh;
@@ -21,21 +21,19 @@
       font-size: 16px;
     }
 
-    /* Add the font-family property to other elements if needed */
     .fs-4 {
       font-family: 'Dosis', sans-serif;
       font-size: 1.25em;
     }
 
     .container-info {
-        display: flex;
-        justify-content: space-between;
-        font-size: large;
+      display: flex;
+      justify-content: space-between;
+      font-size: large;
     }
 
     #wrapper {
       flex: 1;
-      /* Allow the wrapper to grow and take available space */
     }
 
     #footer {
@@ -54,7 +52,9 @@
       padding-right: 100px;
     }
 
-    /* Don't touch it! It is working now!! */
+    .nav-pills .nav-item {
+      margin-right: 5px;
+    }
 
     #move_pic {
       position: relative;
@@ -81,24 +81,24 @@
   <script>
     fn = function () {
       const textContainer = document.getElementById('moving_text');
-      if (textContainer){
-      const textToAnimate = textContainer.innerHTML
-      textContainer.innerHTML = ""
-      let currentIndex = 0;
+      if (textContainer) {
+        const textToAnimate = textContainer.innerHTML
+        textContainer.innerHTML = ""
+        let currentIndex = 0;
 
-      function animateText() {
-        if (currentIndex < textToAnimate.length) {
-          const letter = textToAnimate[currentIndex];
-          textContainer.innerHTML = textToAnimate.substring(0, currentIndex) + '█';
-          textContainer.innerHTML = textContainer.innerHTML.replaceAll('\n', '<br/>')
-          currentIndex++;
-          setTimeout(animateText, Math.floor(Math.random() + 0.005) * 300 + 5); //time interval for the animation
+        function animateText() {
+          if (currentIndex < textToAnimate.length) {
+            const letter = textToAnimate[currentIndex];
+            textContainer.innerHTML = textToAnimate.substring(0, currentIndex) + '█';
+            textContainer.innerHTML = textContainer.innerHTML.replaceAll('\n', '<br/>')
+            currentIndex++;
+            setTimeout(animateText, Math.floor(Math.random() + 0.005) * 300 + 5); //time interval for the animation
+          }
+          else { textContainer.innerHTML = textToAnimate.replaceAll('\n', '<br/>'); }
         }
-        else { textContainer.innerHTML = textToAnimate.replaceAll('\n', '<br/>'); }
-      }
 
-      animateText();
-    }
+        animateText();
+      }
     };
     document.addEventListener('DOMContentLoaded', fn, false);
 
@@ -106,34 +106,34 @@
       const spinnerContainer = document.getElementById('spinner-container');
       const wrapperContainer = document.getElementById('content');
       const aboutLink1 = document.querySelector('.nav-link1');
-      if (aboutLink1){
+      if (aboutLink1) {
 
-      aboutLink1.addEventListener('click', function (event) {
-        event.preventDefault();
+        aboutLink1.addEventListener('click', function (event) {
+          event.preventDefault();
 
-        spinnerContainer.style.display = 'flex'; // Show the spinner container general
-        wrapperContainer.style.display = 'none';
+          spinnerContainer.style.display = 'flex'; // Show the spinner container general
+          wrapperContainer.style.display = 'none';
 
-        window.location.href = aboutLink.href;
-      });
-    }
+          window.location.href = aboutLink.href;
+        });
+      }
     });
 
     document.addEventListener('DOMContentLoaded', function () {
       const spinnerContainer = document.getElementById('spinner-container2');
       const wrapperContainer = document.getElementById('content');
       const aboutLink2 = document.querySelector('.nav-link2');
-      if (aboutLink2){
+      if (aboutLink2) {
 
-      aboutLink2.addEventListener('click', function (event) {
-        event.preventDefault();
+        aboutLink2.addEventListener('click', function (event) {
+          event.preventDefault();
 
-        spinnerContainer.style.display = 'flex'; // Show the spinner container for about
-        wrapperContainer.style.display = 'none';
+          spinnerContainer.style.display = 'flex'; // Show the spinner container for about
+          wrapperContainer.style.display = 'none';
 
-        window.location.href = aboutLink.href;
-      });
-    }
+          window.location.href = aboutLink.href;
+        });
+      }
     });
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -141,40 +141,40 @@
       const wrapperContainer = document.getElementById('content');
       const aboutLink3 = document.querySelector('.nav-link3');
 
-      if (aboutLink3){
-      aboutLink3.addEventListener('click', function (event) {
-        event.preventDefault(); // 
+      if (aboutLink3) {
+        aboutLink3.addEventListener('click', function (event) {
+          event.preventDefault(); // 
 
-        spinnerContainer.style.display = 'flex'; // Show the spinner container for bingo
-        wrapperContainer.style.display = 'none';
+          spinnerContainer.style.display = 'flex'; // Show the spinner container for bingo
+          wrapperContainer.style.display = 'none';
 
-        window.location.href = aboutLink.href;
-      });
-    }
+          window.location.href = aboutLink.href;
+        });
+      }
     });
 
     function moveImage() {
       const container = document.getElementById('move_pic');
       const image = document.getElementById('movingImage');
-      if (container){
+      if (container) {
 
-      const containerWidth = container.clientWidth;
-      const containerHeight = container.clientHeight;
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
 
-      const spreadFactor = 0.65; // little digit -- big spread!!! Don't touch it!
+        const spreadFactor = 0.65; // little digit -- big spread!!! Don't touch it!
 
-      const maxX = containerWidth - image.clientWidth * (1 - spreadFactor);
-      const maxY = containerHeight - image.clientHeight * (1 - spreadFactor);
+        const maxX = containerWidth - image.clientWidth * (1 - spreadFactor);
+        const maxY = containerHeight - image.clientHeight * (1 - spreadFactor);
 
-      const randomX = Math.floor(Math.random() * maxX * (1 - spreadFactor));
-      const randomY = Math.floor(Math.random() * maxY * (1 - spreadFactor));
+        const randomX = Math.floor(Math.random() * maxX * (1 - spreadFactor));
+        const randomY = Math.floor(Math.random() * maxY * (1 - spreadFactor));
 
-      // const randomX = Math.random() < 0.5 ? Math.floor(Math.random() * maxX) : -Math.floor(Math.random() * maxX);
-      // const randomY = Math.random() < 0.5 ? Math.floor(Math.random() * maxY) : -Math.floor(Math.random() * maxY);
+        // const randomX = Math.random() < 0.5 ? Math.floor(Math.random() * maxX) : -Math.floor(Math.random() * maxX);
+        // const randomY = Math.random() < 0.5 ? Math.floor(Math.random() * maxY) : -Math.floor(Math.random() * maxY);
 
-      image.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        image.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      }
     }
-  }
     setInterval(moveImage, 2000);
   </script>
   {% endblock %}
@@ -190,9 +190,13 @@
     </a>
 
     <ul class="nav nav-pills pr-4">
-      <li class="nav-item"><a href="/extract_theme" class="nav-link padded-link" aria-current="page" style="color: rgb(107, 76, 20);">Extract theme</a>
+      <li class="nav-item"><a href="/extract_theme" class="nav-link padded-link" aria-current="page"
+          style="color: rgb(107, 76, 20); ">Extract theme</a>
       </li>
-      <li class="nav-item"><a href="/about" class="nav-link padded-link" aria-current="page" style="color: rgb(107, 76, 20);">About</a></li>
+      <li class="nav-item"><a href="/about" class="nav-link padded-link" aria-current="page"
+          style="color: rgb(107, 76, 20);">About</a></li>
+      <li class="nav-item"><a href="https://github.com/MarinaProsche/bullshitbingogpt" class="nav-link padded-link"
+          aria-current="page" style="color: rgb(107, 76, 20);">see on github</a></li>
     </ul>
   </header>
   <div id="wrapper" class="center-content d-flex flex-wrap">
@@ -241,7 +245,7 @@
       <br>
     </div>
     <p class="text-center" style="text-align: center; font-size: 17px;">
-      &copy; Copyright 2023 by Marina Pismeniuk
+      &copy; Marina Pismeniuk, marina.prosche@gmail.com
     </p>
     {% endblock %}
   </div>

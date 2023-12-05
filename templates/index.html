@@ -45,19 +45,19 @@
     <p>Uncover the secrets of your text and let the game begin!</p>
     <p></p>
 </div>
-    <div class="d-flex justify-content-center">__________<img src="{{ url_for('static', filename=bingo) }}" width=100
-            height=100 frameBorder="0" allowFullScreen> __________
-    </div>
+<div class="d-flex justify-content-center">__________<img src="{{ url_for('static', filename=bingo) }}" width=100
+        height=100 frameBorder="0" allowFullScreen> __________
+</div>
 <br>
 
 <form action="/bingo" method="post">
-<div>
-    <div class="container-info">
+    <div>
+        <div class="container-info">
             <label for="input_theme">Insert your theme with a few specific details:
                 <!-- <p> ("Fiction about sad and hard woman destiny", "Uplifting text about AI-power in our future"...)</p> -->
             </label>
             <div id="count">0/1000</div>
-    </div>
+        </div>
         <p><textarea id="textarea" name="input_theme" rows="2" style="width: 100%;"
                 placeholder='Fiction about sad and hard woman destiny? Or uplifting text about AI-power in our future?..'></textarea>
         </p>
@@ -71,22 +71,31 @@
 </form>
 
 <script>
-    document.getElementById('textarea').onkeyup = function () {
-        document.getElementById('count').innerHTML = this.value.length + "/1000";
-        if (this.value.length > 1000) { document.getElementById("submit").disabled = true; }
-        else { document.getElementById("submit").disabled = false; }
-    };
     document.addEventListener('DOMContentLoaded', function () {
-        const spinnerContainer = document.getElementById('spinner-container');
-        const wrapperContainer = document.getElementById('content');
-        const submit = document.getElementById('submit');
+        const textarea = document.getElementById('textarea');
+        const count = document.getElementById('count');
+        const submitButton = document.getElementById('submit');
 
+        updateSubmitButtonState();
+        textarea.onkeyup = function () {
+            count.innerHTML = this.value.length + "/1000";
+            updateSubmitButtonState();
+        };
 
-        submit.addEventListener('click', function (event) {
+        function updateSubmitButtonState() {
+            if (textarea.value.length > 1000 || textarea.value.length < 2) {
+                submitButton.disabled = true;
+            } else {
+                submitButton.disabled = false;
+            }
+        }
+
+        submitButton.addEventListener('click', function (event) {
+            const spinnerContainer = document.getElementById('spinner-container');
+            const wrapperContainer = document.getElementById('content');
 
             spinnerContainer.style.display = 'flex'; // Show the spinner container
             wrapperContainer.style.display = 'none';
-
         });
     });
 </script>

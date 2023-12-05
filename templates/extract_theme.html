@@ -62,7 +62,7 @@ Unlock the core essence of any text with our cutting-edge Textual Theme Extracto
             <label for="input_text">Insert your text (up to 60,000 symbols)</label>
             <div id="count">0/60000</div>
         </div>
-        <textarea id="textarea" name="input_text"style="width: 100%;" rows="15"></textarea>
+        <textarea id="textarea" name="input_text" style="width: 100%;" rows="15"></textarea>
     </div>
     <div class="d-flex justify-content-center">
         <input class="btn btn-primary fs-5" id="submit" value="send your text" type="submit"
@@ -73,23 +73,35 @@ Unlock the core essence of any text with our cutting-edge Textual Theme Extracto
 {% endif %}
 {% endif %}
 <script>
-    document.getElementById('textarea').onkeyup = function () {
-        document.getElementById('count').innerHTML = this.value.length + "/60000";
-        if (this.value.length > 60000) { document.getElementById("submit").disabled = true; }
-        else { document.getElementById("submit").disabled = false; }
-    };
     document.addEventListener('DOMContentLoaded', function () {
-        const spinnerContainer = document.getElementById('spinner-container');
-        const wrapperContainer = document.getElementById('content');
-        const submit = document.getElementById('submit');
+        const textarea = document.getElementById('textarea');
+        const count = document.getElementById('count');
+        const submitButton = document.getElementById('submit');
 
+        // condition at the beginning 
+        updateSubmitButtonState();
 
-        submit.addEventListener('click', function (event) {
+        textarea.onkeyup = function () {
+            count.innerHTML = this.value.length + "/60000";
+            updateSubmitButtonState();
+        };
+
+        function updateSubmitButtonState() {
+            if (textarea.value.length > 60000 || textarea.value.length < 2) {
+                submitButton.disabled = true;
+            } else {
+                submitButton.disabled = false;
+            }
+        }
+
+        submitButton.addEventListener('click', function (event) {
+            const spinnerContainer = document.getElementById('spinner-container');
+            const wrapperContainer = document.getElementById('content');
 
             spinnerContainer.style.display = 'flex'; // Show the spinner container
             wrapperContainer.style.display = 'none';
-
         });
     });
 </script>
+
 {% endblock %}

@@ -1,77 +1,59 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
-</style>
-<div class="fs-4" style="width: 85rem;">
-
-    {% if chat_response %}
-    <p> ChatGPT response was: <b>"{{ chat_response }}"</b></p>
-
-    <a href="/" id="ButtonForReturn">Go and generate buzzwords!</a>
-    <div class="d-flex justify-content-center">
-        <img src="{{ url_for('static', filename=bullshit) }}" width=300 height=150.000 frameBorder="0" allowFullScreen>
+<div class="container">
+    <div class="row">
+        {% if chat_response %}
+        <div class="col-12" style="text-align: left">
+            <p> ChatGPT response was: <b>"{{ chat_response }}"</b></p>
+            <a href="/" id="ButtonForReturn">Go and generate buzzwords!</a>
+            <div class="d-flex justify-content-center">
+                <img src="{{ url_for('static', filename=bullshit) }}" width=20% height=10% frameBorder="0"
+                    allowFullScreen>
+            </div>
+            <p> ✍🏻✍🏻Try another text: </p>
+        </div>
+        {% else %}
+        <h2 class="d-flex justify-content-center">🚀 Textual Theme Extractor 🚀</h2>
+        <br />
+        <p></p>
+        <div class="col-12" style="text-align: left;">
+            If you don't know the theme of the text, you can use Theme Extractor!!!
+            Discover Deeper Insights!
+            <br />
+            Unlock the core essence of any text with our cutting-edge Textual Theme Extractor.
+            <p>Dive into narratives,
+                understand nuances, and leverage AI-driven insights.
+            </p>
+            <h3>🌟 Key Features 🌟</h3>
+            <p>
+            <ul>
+                <li>Dynamic Narratives: Understand every text's core essence.</li>
+                <li>Optimized Insights: From top-level takeaways to minute details.</li>
+                <li>AI-Powered Analysis: Holistic and actionable results every time.</li>
+            </ul>
+            <p></p>
+            <h3> Connect & Revolutionize Your Text Analysis! </h3>
+            <i>Textual Theme Extractor - Where Every Word Counts.</i>
+            <p></p>
+        </div>
+        {% endif %}
+        <div class="col-12" style="text-align: left">
+            <form action="" method="post">
+                <div class="container-info">
+                    <label for="input_text">Insert your text (up to 60,000 symbols)</label>
+                    <div id="count">0/60000</div>
+                </div>
+                <textarea id="textarea" name="input_text" style="width: 100%" rows="15"></textarea>
+                <div class="d-flex justify-content-center">
+                    <input class="btn btn-primary fs-5" id="submit" value="send your text" type="submit"
+                        style="background-color: rgb(51, 48, 48); color: rgb(211, 146, 25);"></input>
+                </div>
+                <p></p>
+            </form>
+        </div>
     </div>
 </div>
-<p> ✍🏻✍🏻Try another text: </p>
-
-<form action="" method="post">
-    <div>
-        <div class="container-info">
-            <label for="input_text">Insert your text (up to 60,000 symbols)</label>
-            <div id="count">0/60000</div>
-        </div>
-        <textarea id="textarea" name="input_text" style="width: 100%;" rows="15"></textarea>
-    </div>
-    <div class="d-flex justify-content-center">
-        <input class="btn btn-primary fs-5" id="submit" value="send your text" type="submit"
-            style="background-color: rgb(51, 48, 48); color: rgb(211, 146, 25);"></input>
-    </div>
-    <p></p>
-</form>
-
-{% else %}
-<h2 class="d-flex justify-content-center">🚀 Textual Theme Extractor 🚀</h2>
-<br />
-If you don't know the theme of the text, you can use Theme Extractor!!!
-Discover Deeper Insights!
-<br />
-Unlock the core essence of any text with our cutting-edge Textual Theme Extractor.
-<p>Dive into narratives,
-    understand nuances, and leverage AI-driven insights.
-</p>
-<h3>🌟 Key Features 🌟</h3>
-<p>
-<ul>
-    <li>Dynamic Narratives: Understand every text's core essence.</li>
-    <li>Optimized Insights: From top-level takeaways to minute details.</li>
-    <li>AI-Powered Analysis: Holistic and actionable results every time.</li>
-</ul>
-<p></p>
-<h3> Connect & Revolutionize Your Text Analysis! </h3>
-
-<i>Textual Theme Extractor - Where Every Word Counts.</i>
-
-<p></p>
-</div>
-
-{% if show_form %}
-<form action="" method="post">
-    <div>
-        <div class="container-info">
-            <label for="input_text">Insert your text (up to 60,000 symbols)</label>
-            <div id="count">0/60000</div>
-        </div>
-        <textarea id="textarea" name="input_text" style="width: 100%;" rows="15"></textarea>
-    </div>
-    <div class="d-flex justify-content-center">
-        <input class="btn btn-primary fs-5" id="submit" value="send your text" type="submit"
-            style="background-color: rgb(51, 48, 48); color: rgb(211, 146, 25);"></input>
-    </div>
-    <p></p>
-</form>
-{% endif %}
-{% endif %}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const textarea = document.getElementById('textarea');

@@ -1,27 +1,41 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="fs-4" style="width: 77rem;">
-  Well, let me provide you with a description of what's happening here..🤔
-  <p></p>
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="text-align: left;"></div>
+    <div class="fs-4">
+      Well, let me provide you with a description of what's happening here..🤔
+      <p></p>
+    </div>
+    <!-- <div class="col-md-4 col-xs-1">
+  <div class="text-wrap fs-5" style="text-align: center; max-width: 30%;">
+    <img src="{{ url_for('static', filename=code_file) }}" allowFullScreen></div>
+  <br>
+  </p>
+</div> -->
+    <p class="col-6" style="justify-content: center;">
+    <pre
+      style="background: radial-gradient(#5fbd5f67, #ffffff00); font-size: medium; border-top: 1px solid rgb(46, 85, 20); border-bottom: 1px solid rgb(46, 85, 20);">def get_text_about():
+  prompt = (f'Please write description (up to 150 words) for the website "Bullshit Bingo GPT" where you can provide an input ' +
+      f'text and it automatically generates bullshit bingo card for this text by exposing buzzwords and cliches from the text. ' + 
+      f'We are using power of modern AI, you should mention it. Use a lot of bullshit in your answer. Use just three emoji in text. ')
+  return chat_with_chatgpt(prompt=prompt)</pre>
+    </p>
+    <div class="text-wrap fs-5" style="display: flex; justify-content: space-between; align-items: baseline;">
+      <span>⌨️ Press the button, and I will create a description specifically for you.🤓🧙🏻</span>
+      <form action="/about" method="POST" style="margin-left: auto;">
+        <input class="btn btn-primary fs-5" id="submit" value="Go!" type="submit"
+          style="background-color: black; color: rgb(124, 168, 197);"></input>
+      </form>
+    </div>
 
-  <div class="text-wrap fs-5" style="width: 77rem; text-align: center;">
-    <img src="{{ url_for('static', filename=code_file) }}" allowFullScreen>
+    <br>
+    <p id="moving_text" style="font-size: 100%; margin-bottom: 3px;">{{text_about}}</p>
   </div>
-  <br>
-  <div class="text-wrap fs-5" style="width: 97%; display: flex; justify-content: space-between; align-items: baseline;">
-    <span>⌨️ Press the button, and I will create a description specifically for you.🤓🧙🏻</span>
-    <form action="/about" method="POST" style="margin-left: auto;">
-      <input class="btn btn-primary fs-5" id="submit" value="Go!" type="submit"
-        style="background-color: black; color: rgb(124, 168, 197);"></input>
-    </form>
-  </div>
-  <br>
-  <p id="moving_text" style="font-size: 100%; margin-bottom: 3px;">{{text_about}}</p>
 </div>
-
 <style>
   #spinner-container2 {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;

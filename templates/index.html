@@ -2,74 +2,85 @@
 
 {% block content %}
 <style>
-    .table {
-        width: 30%;
-        border-collapse: collapse;
-        table-layout: fixed;
-    }
-
-    .table td {
-        border: 1px solid #3ba84a;
-        padding: 3px;
+    .square-cell {
+        width: 100px;
+        height: 100px;
         text-align: center;
         vertical-align: middle;
-        width: 1%;
-        height: 75px;
-        position: relative;
-        font-size: 21px;
+        /* white-space: nowrap; */
+        font-size: 100%;
+    }
+
+    .fixed-cell {
+        max-width: 119px;
+        max-height: 119px;
+        width: 119px;
+        height: 119px;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+        border: 2px solid black;
+        font-size: 75%;
+
     }
 </style>
-<div class="fs-4" style="width: 85rem;">
-    <h2 class="d-flex justify-content-center">
-        <table class="table table-bordered">
-            <tr style="">
-                <td>use</td>
-                <td style="background-color: #3ba84a;">AI</td>
-                <td>💡</td>
-                <td>be</td>
-                <td style="background-color: #3ba84a;">ORIGINAL</td>
-            </tr>
-        </table>
-    </h2>
-    <h1 class="d-flex justify-content-center font-weight: 120%">
-        TEXT CLICHE'METER
-    </h1>
-    <p>🚀🚀 Hello! Welcome to Bullshit Bingo GPT! I am your trusty Little Bingo Helper!
-    </p>
-    <p>Check your text for originality! Don't hesitate, input the theme of your text,
-        and I'll generate a bingo card with the most popular clichés for it.
-        If you have a text but are unsure about the theme, head to "extract theme," and we'll find it together! ⬀⬀
-    <p>Ready for some fun? Whether you're sitting through a corporate presentation, reading a marketing pitch, or
-        simply want to find out
-        how much jargon fills your own writings, Little Bingo Helper is always here for you.</p>
-    <p>Uncover the secrets of your text and let the game begin!</p>
-    <p></p>
-</div>
-<div class="d-flex justify-content-center">__________<img src="{{ url_for('static', filename=bingo) }}" width=100
-        height=100 frameBorder="0" allowFullScreen> __________
-</div>
-<br>
 
-<form action="/bingo" method="post">
-    <div>
-        <div class="container-info">
-            <label for="input_theme">Insert your theme with a few specific details:
-                <!-- <p> ("Fiction about sad and hard woman destiny", "Uplifting text about AI-power in our future"...)</p> -->
-            </label>
-            <div id="count">0/1000</div>
-        </div>
-        <p><textarea id="textarea" name="input_theme" rows="2" style="width: 100%;"
-                placeholder='Fiction about sad and hard woman destiny? Or uplifting text about AI-power in our future?..'></textarea>
+<div class="container">
+
+    <div class="row">
+        <h2 class="d-flex justify-content-center">
+            <div class="fs-4">
+                <table class="table table-bordered">
+                    <tr>
+                        <td class="square-cell">use</td>
+                        <td class="square-cell" style="background-color: #3ba84a;">AI</td>
+                        <td class="square-cell">💡</td>
+                        <td class="square-cell">be</td>
+                        <td class="square-cell" style="background-color: #3ba84a;">ORIGINAL</td>
+                    </tr>
+                </table>
+            </div>
+        </h2>
+        <h1 class="d-flex justify-content-center font-weight: 120%">
+            TEXT CLICHE'METER
+        </h1>
+        <p>🚀🚀 Hello! Welcome to Bullshit Bingo GPT! I am your trusty Little Bingo Helper!
         </p>
-    </div>
+        <p>Check your text for originality! Don't hesitate, input the theme of your text,
+            and I'll generate a bingo card with the most popular clichés for it.
+            If you have a text but are unsure about the theme, head to "extract theme," and we'll find it together! ⬀⬀
+        <p>Ready for some fun? Whether you're sitting through a corporate presentation, reading a marketing pitch, or
+            simply want to find out
+            how much jargon fills your own writings, Little Bingo Helper is always here for you.</p>
+        <p>Uncover the secrets of your text and let the game begin!</p>
+        <p></p>
 
-    <div class="d-flex justify-content-center">
-        <input class="btn btn-primary fs-5" id="submit" value="send" type="submit"
-            style="background-color: rgb(51, 48, 48); color: rgb(211, 146, 25);"></input>
-    </div>
-    <p></p>
-</form>
+        <div class="d-flex justify-content-center">__________<img src="{{ url_for('static', filename=bingo) }}"
+                width=100 height=100 frameBorder="0" allowFullScreen> __________
+        </div>
+        <br>
 
+        <form action="/bingo" method="post">
+            <div>
+                <div class="container-info">
+                    <label for="input_theme">Insert your theme with a few specific details:
+                        <!-- <p> ("Fiction about sad and hard woman destiny", "Uplifting text about AI-power in our future"...)</p> -->
+                    </label>
+                    <div id="count">0/1000</div>
+                </div>
+                <p><textarea id="textarea" name="input_theme" rows="2" style="width: 100%;"
+                        placeholder='Fiction about sad and hard woman destiny? Or uplifting text about AI-power in our future?..'></textarea>
+                </p>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <input class="btn btn-primary fs-5" id="submit" value="send" type="submit"
+                    style="background-color: rgb(51, 48, 48); color: rgb(211, 146, 25);"></input>
+            </div>
+            <p></p>
+        </form>
+    </div>
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const textarea = document.getElementById('textarea');
